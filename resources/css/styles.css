@@ -1,0 +1,53 @@
+#a{
+    background-color: aqua;
+}
+
+#a1{
+    background-color: rgb(54, 194, 147);
+}
+
+#a2{
+    background-color: rgb(2, 167, 112);
+}
+
+#a3{
+    background-color: rgb(93, 186, 155);
+}
+
+#b{
+    background-color: plum;
+    text-align: center;
+}
+
+#c{
+    background-color: yellow;
+}
+
+#d{
+    background-color: coral;
+    justify-content: space-between;
+}
+
+#d1{
+    display: inline-block;
+}
+
+#d1, #d1 h1, #d1 h4{
+    max-width: 400px;
+}
+
+#e{
+    background-color: deepskyblue;
+}
+
+#f{
+    background-color: floralwhite;
+}
+
+#g{
+    background-color: lime;
+}
+
+#h{
+    background-color: silver;
+}
