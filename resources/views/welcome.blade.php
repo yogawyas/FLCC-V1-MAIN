@@ -120,7 +120,7 @@
         <div>
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
-                <h3 class="text-xl">Marvel Kevin</h3>
+                <h3 class="text-xl">Marvel Gay</h3>
             </div>
             <!-- Menambahkan gambar ke dalam frame -->
             <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
