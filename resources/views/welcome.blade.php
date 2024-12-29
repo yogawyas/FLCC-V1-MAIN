@@ -120,11 +120,12 @@
         <div>
             <div class="text-center mb-8">
                 <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
-                <h3 class="text-xl">Stephanie Fenuela</h3>
+                <h3 class="text-xl">Marvel Kevin</h3>
             </div>
             <!-- Menambahkan gambar ke dalam frame -->
             <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
-                <img src="path/to/stephanie.jpg" alt="Stephanie Fenuela" class="w-full h-full object-cover">
+            <img src="{{ asset("storage/photos/pastor_marvel.jpg") }}" alt="marvel" class="w-full h-full object-cover">
+
             </div>
         </div>
         
@@ -148,7 +149,7 @@
         <!-- More About Us Button -->
         <div class="text-center">
             <a href="{{ route('about') }}" class="inline-block bg-violet-400 text-white px-8 py-3 rounded-lg hover:bg-violet-500 transition-colors">
-                >MORE ABOUT US
+                MORE ABOUT US
             </a>
         </div>
     </div>

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Auth\LoginController;
@@ -45,7 +46,7 @@ Route::post('/admin/login', [AuthenticatedSessionController::class, 'store']);
 
 // Admin Dashboard
 Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get('/admin/dashboard', function () {
         if (auth('admin')->user()->is_admin) {
             $totalUsers = User::count();
             $totalEvents = Event::count();
@@ -82,7 +83,7 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
 // Rute lainnya
 Route::get('/events', [EventController::class, 'index'])->name('events');
-Route::get('/ministry', [EventController::class, 'index'])->name('ministry');
+Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [EventController::class, 'index'])->name('news');
 Route::get('/about', function () {
     return view('about');

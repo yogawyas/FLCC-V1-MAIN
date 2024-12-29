@@ -25,7 +25,7 @@ class AdminLoginController extends Controller
 
         if ($admin && Hash::check($request->password, $admin->password)) {
             Auth::login($admin);
-            return redirect()->route('admin.dashboard');
+            return redirect()->route('admin.Dashboard');
         }
 
         return back()->withErrors(['email' => 'These credentials do not match our records.']);
