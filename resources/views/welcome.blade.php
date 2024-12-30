@@ -38,6 +38,9 @@
 
                 <!-- Authentication -->
                 <div class="flex items-center">
+                    <!-- Welcome Message -->
+                    <!-- <p class="text-sm text-gray-500 mr-4">Welcome, {{ auth()->check() ? auth()->user()->name : 'Guest' }}</p> -->
+
                     @auth
                     <div class="relative">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
@@ -64,31 +67,29 @@
         <!-- Video Section -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="mb-12 rounded-lg overflow-hidden aspect-video">
-            <iframe
-    class="w-full h-full"
-    src="https://www.youtube.com/embed/Fg0Tn_v8gJ0?autoplay=1"  
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen>
-</iframe>
-
+                <iframe class="w-full h-full"
+                    src="https://www.youtube.com/embed/Fg0Tn_v8gJ0?autoplay=1"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen>
+                </iframe>
             </div>
 
-              <!-- Vision & Mission -->
-              <div class="mb-12 text-center max-w-4xl mx-auto">
-    <div class="mb-8">
-        <h2 class="text-3xl font-semibold mb-4">Our Vision</h2> 
-        <p class="text-gray-600 dark:text-gray-400">
-            Transforming communities, raising next generation of leaders.
-        </p>
-    </div>
-    <div>
-        <h2 class="text-3xl font-semibold mb-4">Our Mission</h2> 
-        <p class="text-gray-600 dark:text-gray-400">
-            An assembly of next generation and discipling next generation to experience God and find their calling so they can transform and influence their communities through kingdom values.
-        </p>
-    </div>
-</div>
+            <!-- Vision & Mission -->
+            <div class="mb-12 text-center max-w-4xl mx-auto">
+                <div class="mb-8">
+                    <h2 class="text-3xl font-semibold mb-4">Our Vision</h2>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Transforming communities, raising next generation of leaders.
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-3xl font-semibold mb-4">Our Mission</h2>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        An assembly of next generation and discipling next generation to experience God and find their calling so they can transform and influence their communities through kingdom values.
+                    </p>
+                </div>
+            </div>
 
             <!-- News Section -->
             <div class="mb-12">
@@ -111,48 +112,43 @@
                         @endforelse
                     </div>
                 </div>
-        </div>
+            </div>
 
-        <!-- Pastors Section -->
-        <div class="mb-12">
-    <div class="grid md:grid-cols-2 gap-8">
-        <!-- Our Associate Youth Pastor -->
-        <div>
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
-                <h3 class="text-xl">Marvel Gay</h3>
-            </div>
-            <!-- Menambahkan gambar ke dalam frame -->
-            <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
-            <img src="{{ asset("storage/photos/pastor_marvel.jpg") }}" alt="marvel" class="w-full h-full object-cover">
+            <!-- Pastors Section -->
+            <div class="mb-12">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Our Associate Youth Pastor -->
+                    <div>
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
+                            <h3 class="text-xl">Stephanie Fenuela</h3>
+                        </div>
+                        <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
+                            <img src="{{ asset('storage/photos/stephanie_fenuela.jpg') }}" alt="Stephanie Fenuela" class="w-full h-full object-cover">
+                        </div>
+                    </div>
 
+                    <!-- Our Youth Pastor -->
+                    <div>
+                        <div class="text-center mb-8">
+                            <h2 class="text-2xl font-bold mb-2">Our Youth Pastor</h2>
+                            <h3 class="text-xl">Joshua Hezer</h3>
+                        </div>
+                        <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
+                            <img src="{{ asset('storage/photos/Joshua_hezer.jpg') }}" alt="Joshua Hezer" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        
-        <!-- Our Youth Pastor -->
-        <div>
-            <div class="text-center mb-8">
-                <h2 class="text-2xl font-bold mb-2">Our Youth Pastor</h2>
-                <h3 class="text-xl">Joshua Hezer</h3>
-            </div>
-            <!-- Menambahkan gambar ke dalam frame -->
-            <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
-                <img src="path/to/joshua.jpg" alt="Joshua Hezer" class="w-full h-full object-cover">
-            </div>
-        </div>
-    </div>
+
+            <!-- More About Us Button -->
+            <div class="text-center">
+    <a href="{{ route('about') }}" class="inline-block bg-violet-400 text-white px-8 py-3 rounded-lg hover:bg-violet-500 transition-colors">
+        MORE ABOUT US
+    </a>
 </div>
 
-
-      
-
-        <!-- More About Us Button -->
-        <div class="text-center">
-            <a href="{{ route('about') }}" class="inline-block bg-violet-400 text-white px-8 py-3 rounded-lg hover:bg-violet-500 transition-colors">
-                MORE ABOUT US
-            </a>
         </div>
-    </div>
     </div>
 
     <!-- Footer -->
@@ -161,15 +157,12 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
                     <h4 class="font-semibold mb-4">Contact Us</h4>
-                    <!-- Add contact information -->
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Service Times</h4>
-                    <!-- Add service schedule -->
                 </div>
                 <div>
                     <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <!-- Add social media links -->
                 </div>
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\MinistryController;
+use App\Http\Controllers\MoreaboutusController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\Auth\LoginController;
@@ -72,6 +73,13 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
         return redirect('/admin/login');
     })->name('admin.logout');
 
+    //route more about us
+    Route::get('/about', function () {
+        return view('about'); // Ganti 'about' dengan view yang sesuai
+    })->name('about');
+    
+
+
     // CRUD event
     Route::get('/events', [AdminEventController::class, 'index'])->name('admin.events.index');
     Route::get('/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
@@ -85,9 +93,15 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [EventController::class, 'index'])->name('news');
-Route::get('/about', function () {
-    return view('about');
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('about');
+
+ //route more about us yang baru
+ Route::get('/about', function () {
+    return view('about'); // Sesuaikan dengan nama view
 })->name('about');
+
 
 // Autentikasi default Laravel
 require __DIR__.'/auth.php';
