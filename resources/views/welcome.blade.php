@@ -106,9 +106,10 @@
                             <p class="text-white/90">{{ Str::limit($newsItem->content, 100) }}</p>
                         </div>
                         @empty
-                        <div class="bg-violet-400 rounded-lg p-8 min-w-[300px] aspect-video flex items-center justify-center text-white flex-shrink-0">
-                            No news available
+                        <div class="bg-transparent rounded-lg p-8 min-w-[300px] aspect-video flex items-center justify-center text-white flex-shrink-0">
+                            <p class="text-2xl font-semibold mb-4 text-center">No news available</p>
                         </div>
+
                         @endforelse
                     </div>
                 </div>
@@ -143,10 +144,11 @@
 
             <!-- More About Us Button -->
             <div class="text-center">
-    <a href="{{ route('about') }}" class="inline-block bg-violet-400 text-white px-8 py-3 rounded-lg hover:bg-violet-500 transition-colors">
-        MORE ABOUT US
-    </a>
-</div>
+                <a href="{{ route('about') }}" class="text-violet-400 hover:text-violet-500 inline-block font-bold text-xl">
+                Discover More About Us
+                </a>
+
+            </div>
 
         </div>
     </div>
