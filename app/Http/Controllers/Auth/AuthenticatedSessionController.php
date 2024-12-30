@@ -37,7 +37,7 @@ class AuthenticatedSessionController extends Controller
 
         // Cek apakah user adalah admin
         if (Auth::user()->is_admin == true) {
-            return redirect()->route('admin.dashboard'); // Admin Dashboard
+            return redirect()->route('admin/dashboard'); // Admin Dashboard
         }
 
         // Untuk user biasa
