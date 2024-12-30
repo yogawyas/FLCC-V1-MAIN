@@ -81,6 +81,16 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
 
     // CRUD event
+    // Route::get('/events', [AdminEventController::class, 'index'])->name('admin.events.index');
+    // Route::get('/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
+    // Route::post('/events', [AdminEventController::class, 'store'])->name('admin.events.store');
+    // Route::get('/events/{event}/edit', [AdminEventController::class, 'edit'])->name('admin.events.edit');
+    // Route::put('/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
+    // Route::delete('/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+});
+
+Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
+    // Rute CRUD Event
     Route::get('/events', [AdminEventController::class, 'index'])->name('admin.events.index');
     Route::get('/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
     Route::post('/events', [AdminEventController::class, 'store'])->name('admin.events.store');
@@ -89,15 +99,18 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
     Route::delete('/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
 });
 
+
 // Rute lainnya
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [EventController::class, 'index'])->name('news');
-
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('about');
 
  //route more about us yang baru
  Route::get('/about', function () {
-    return view('about'); 
+    return view('about'); // Sesuaikan dengan nama view
 })->name('about');
 
 

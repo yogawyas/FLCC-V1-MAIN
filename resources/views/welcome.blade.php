@@ -17,14 +17,14 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}" class="text-violet-400 font-bold text-xl">
+                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
                             FLCC
                         </a>
                     </div>
 
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:flex sm:ml-10">
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
+                        <a href="{{ route('welcome') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
                         </a>
                         <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events*') ? 'text-violet-400' : 'text-gray-500' }}">

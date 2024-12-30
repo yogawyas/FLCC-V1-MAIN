@@ -22,7 +22,7 @@
 
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:flex sm:ml-10">
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard*') ? 'text-violet-400' : 'text-gray-500' }}">
+                        <a href="{{ route('welcome') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('welcome*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
                         </a>
                         <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events') ? 'text-violet-400' : 'text-gray-500' }}">
@@ -31,6 +31,15 @@
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
+
+                        <!-- Special Button for Admin -->
+                        @auth
+                            @if(Auth::user()->is_admin)
+                                <a href="{{ route('admin.events.index') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                                    Manage Events
+                                </a>
+                            @endif
+                        @endauth
                     </div>
                 </div>
 

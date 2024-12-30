@@ -11,14 +11,14 @@ class AdminEventController extends Controller
     public function __construct()
     {
         // Pastikan middleware ini digunakan untuk otentikasi admin
-        $this->middleware('auth:admin'); // Middleware 'auth:admin' memastikan hanya admin yang bisa mengakses controller ini
+        $this->middleware('auth:admin'); 
     }
 
     // Menampilkan daftar event
     public function index()
     {
-        $events = Event::all();  // Mengambil semua data event dari database
-        return view('admin.events.index', compact('events'));  // Mengirim data event ke view admin
+        $events = Event::all();
+        return view('admin.events.index', compact('events'));  
     }
 
     // Menampilkan form untuk membuat event baru
