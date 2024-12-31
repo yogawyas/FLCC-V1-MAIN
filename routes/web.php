@@ -105,3 +105,5 @@ Route::get('/news', [EventController::class, 'index'])->name('news');
 
 // Autentikasi default Laravel
 require __DIR__.'/auth.php';
+
+Route::post('/ministry/{ministry}/join', [MinistryController::class, 'join'])->name('ministry.join');
