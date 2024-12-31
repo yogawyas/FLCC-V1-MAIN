@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ministry;
 use Illuminate\Http\Request;
+use Database\Seeders\MinistrySeeder;
 
 class MinistryController extends Controller
 {
