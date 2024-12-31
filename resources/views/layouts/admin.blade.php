@@ -15,7 +15,7 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('admin.dashboard') }}" class="text-violet-400 font-bold text-xl">
+                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
                             FLCC Admin
                         </a>
                     </div>

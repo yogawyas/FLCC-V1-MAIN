@@ -30,6 +30,21 @@
 
             <!-- Page Content -->
             <main>
+            @auth('admin')
+                <a href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                <form method="POST" action="{{ route('admin.logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            @endauth
+
+            @auth
+                <a href="{{ route('dashboard') }}">Dashboard</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit">Logout</button>
+                </form>
+            @endauth
                 {{ $slot }}
             </main>
         </div>

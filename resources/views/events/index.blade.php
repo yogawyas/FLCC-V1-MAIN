@@ -31,6 +31,13 @@
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
+                        @auth
+                            @if(Auth::user()->is_admin)
+                                <a href="{{ route('admin.events.index') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                                    Manage Events
+                                </a>
+                            @endif
+                        @endauth
                     </div>
                 </div>
 
@@ -60,6 +67,13 @@
     <!-- Main Content -->
     <main class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+@auth('admin')
+    <p>Admin is logged in</p>
+@endauth
+
+@auth('web')
+    <p>User is logged in</p>
+@endauth
             <!-- Available Events Section -->
             <section class="mb-12">
                 <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Available Events</h2>
