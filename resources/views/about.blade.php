@@ -95,9 +95,10 @@
                 </p>
                 <div class="mt-6">
                     <ul>
-                        <li><a href="{{ route('ministry') }}" class="text-violet-600 hover:text-violet-800">Ministry 1</a></li>
-                        <li><a href="{{ route('ministry') }}" class="text-violet-600 hover:text-violet-800">Ministry 2</a></li>
-                        <li><a href="{{ route('ministry') }}" class="text-violet-600 hover:text-violet-800">Ministry 3</a></li>
+                    @forelse($ministries as $ministry)
+                        <li><a href="{{ route('ministry') }}" class="text-violet-600 hover:text-violet-800">{{ $ministry->name }}</a></li>
+                        @empty
+                        @endforelse
                     </ul>
                 </div>
             </div>

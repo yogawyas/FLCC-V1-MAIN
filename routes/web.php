@@ -96,11 +96,11 @@ Route::get('/news', [EventController::class, 'index'])->name('news');
 // Route::get('/about', function () {
 //     return view('about');
 // })->name('about');
-
+Route::get('/about', [MoreaboutusController::class, 'index'])->name('about');
  //route more about us yang baru
- Route::get('/about', function () {
-    return view('about'); // Sesuaikan dengan nama view
-})->name('about');
+//  Route::get('/about', function () {
+//     return view('about'); // Sesuaikan dengan nama view
+// })->name('about');
 
 
 // Autentikasi default Laravel

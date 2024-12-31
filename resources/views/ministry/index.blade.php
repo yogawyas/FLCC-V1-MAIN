@@ -218,6 +218,16 @@
         }
     </script>
 
+    <div class="flex items-center justify-center h-screen">
+        <div class="relative -mt-16">
+            <a href="{{ route('welcome') }}" class="text-violet-400 hover:text-violet-500 text-2xl font-bold">
+                Back to Main Page
+            </a>
+        </div>
+    </div>
+
+
+
     <!-- Sweet Alert for Success Message -->
     @if(session('success'))
     <script>
