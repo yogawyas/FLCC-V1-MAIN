@@ -15,14 +15,14 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('dashboard') }}" class="text-violet-400 font-bold text-xl">
+                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
                             FLCC
                         </a>
                     </div>
 
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:flex sm:ml-10">
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard*') ? 'text-violet-400' : 'text-gray-500' }}">
+                        <a href="{{ route('welcome') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
                         </a>
                         <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events') ? 'text-violet-400' : 'text-gray-500' }}">
@@ -33,7 +33,7 @@
                         </a>
                         @auth
                             @if(Auth::user()->is_admin)
-                                <a href="{{ route('admin.events.index') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+                                <a href="{{ route('admin-dashboard') }}" class="bg-red-500 text-black px-4 py-2 rounded hover:bg-red-600">
                                     Manage Events
                                 </a>
                             @endif
@@ -67,13 +67,14 @@
     <!-- Main Content -->
     <main class="py-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-@auth('admin')
-    <p>Admin is logged in</p>
-@endauth
-
-@auth('web')
-    <p>User is logged in</p>
-@endauth
+            @auth
+                @if(Auth::user()->is_admin)
+                    <p>Admin is logged in</p>
+                @else
+                    <p>User is logged in</p>
+                @endif
+            @endauth
+        </div>
             <!-- Available Events Section -->
             <section class="mb-12">
                 <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Available Events</h2>

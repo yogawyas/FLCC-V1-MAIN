@@ -44,7 +44,7 @@
                     @auth
                     <div class="relative">
                         <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
-                            {{ Auth::user()->name }}
+                            <a href="{{ route('profile.edit')}}">{{ Auth::user()->name }}</a>
                         </button>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
@@ -102,8 +102,13 @@
                     <div class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide">
                         @forelse($news ?? [] as $newsItem)
                         <div class="bg-violet-400 rounded-lg p-8 min-w-[300px] aspect-video flex-shrink-0">
-                            <h3 class="text-white font-bold mb-2">{{ $newsItem->title }}</h3>
-                            <p class="text-white/90">{{ Str::limit($newsItem->content, 100) }}</p>
+                            @if(is_object($newsItem))
+                                <h3 class="text-white font-bold mb-2">{{ $newsItem->title }}</h3>
+                                <p class="text-white/90">{{ Str::limit($newsItem->content, 100) }}</p>
+                            @else
+                                <h3 class="text-white font-bold mb-2">No Title</h3>
+                                <p class="text-white/90">No Content</p>
+                            @endif
                         </div>
                         @empty
                         <div class="bg-transparent rounded-lg p-8 min-w-[300px] aspect-video flex items-center justify-center text-white flex-shrink-0">

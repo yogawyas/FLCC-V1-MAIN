@@ -3,6 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
+
     <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm rounded-lg">
         <div class="p-6">
             <h2 class="text-2xl font-semibold mb-6">Dashboard Overview</h2>

@@ -3,64 +3,55 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
     /**
-     * Display the login view.
+     * Menampilkan form login untuk user biasa atau admin
      */
-    public function create(): View
+    public function create(Request $request)
     {
-        return view('auth.login');
+        // Tentukan view berdasarkan rute
+        $isAdminRoute = $request->is('admin/*');
+        return view($isAdminRoute ? 'auth.admin.login' : 'auth.login');
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Memproses login
      */
-    public function store(LoginRequest $request): RedirectResponse
-{
-    $request->validate([
-        'email' => ['required', 'email'],
-        'password' => ['required', 'min:8'],
-    ]);
+    public function store(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-    $credentials = $request->only('email', 'password');
+        $guard = $request->is('admin/*') ? 'admin' : 'web';
 
-    // Menggunakan auth('admin') untuk login admin
-    if (Auth::attempt($credentials)) {
-        $request->session()->regenerate();
+        if (Auth::guard($guard)->attempt($credentials, $request->boolean('remember'))) {
+            $request->session()->regenerate();
 
-        // Cek apakah user adalah admin
-        if (Auth::user()->is_admin == true) {
-            return redirect()->route('admin/dashboard'); // Admin Dashboard
+            return redirect()->intended($guard === 'admin' ? '/admin/dashboard' : '/dashboard');
         }
 
-        // Untuk user biasa
-        return redirect()->route('welcome');
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
-    // Jika login gagal
-    return back()->withErrors([
-        'email' => 'The provided credentials do not match our records.',
-    ]);
-}
-
     /**
-     * Destroy an authenticated session.
+     * Memproses logout
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request)
     {
-        Auth::guard('web')->logout();
+        $guard = Auth::guard('admin')->check() ? 'admin' : 'web';
 
+        Auth::guard($guard)->logout();
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect($guard === 'admin' ? '/admin/login' : '/login');
     }
 }

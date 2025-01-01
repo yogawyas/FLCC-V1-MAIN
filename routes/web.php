@@ -5,19 +5,17 @@ use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\MoreaboutusController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\WelcomeController;
-use App\Http\Controllers\Auth\LoginController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
-
-use App\Models\User;
-use App\Models\Event;
-use App\Models\Ministry;
-use App\Models\News;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\AdminEventController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminMinistriesController;
 use App\Http\Controllers\Admin\AdminNewsController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Event;
+use App\Models\Ministry;
+use App\Models\News;
 
 // Tampilan awal
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -46,64 +44,55 @@ Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])->n
 Route::post('/admin/login', [AuthenticatedSessionController::class, 'store']);
 
 // Admin Dashboard
-Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        if (auth('admin')->user()->is_admin) {
-            $totalUsers = User::count();
-            $totalEvents = Event::count();
-            $totalMinistries = Ministry::count();
-            $totalNews = News::count();
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/dashboard', function () {
+        $totalUsers = User::count();
+        $totalEvents = Event::count();
+        $totalMinistries = Ministry::count();
+        $totalNews = News::count();
 
-            $stats = [
-                'total_users' => $totalUsers,
-                'total_events' => $totalEvents,
-                'total_ministries' => $totalMinistries,
-                'total_news' => $totalNews,
-            ];
+        $stats = [
+            'total_users' => $totalUsers,
+            'total_events' => $totalEvents,
+            'total_ministries' => $totalMinistries,
+            'total_news' => $totalNews,
+        ];
 
-            return view('admin.dashboard', compact('stats'));
-        }
-
-        abort(403, 'This action is unauthorized.');
-    })->name('admin.dashboard');
+        return view('admin-dashboard', compact('stats'));
+    })->name('admin-dashboard');
 
     // Rute logout untuk admin
     Route::post('/logout', function () {
-        auth('admin')->logout();
+        Auth::guard('admin')->logout();
         return redirect('/admin/login');
     })->name('admin.logout');
 
-    //route more about us
+    // CRUD Events for Admin
+    Route::get('/events', [AdminEventController::class, 'index'])->name('admin-events');
+    Route::get('/events/create', [AdminEventController::class, 'create'])->name('admin-events.create');
+    Route::post('/events', [AdminEventController::class, 'store'])->name('admin-events.store');
+    Route::get('/events/{event}/edit', [AdminEventController::class, 'edit'])->name('admin-events.edit');
+    Route::put('/events/{event}', [AdminEventController::class, 'update'])->name('admin-events.update');
+    Route::delete('/events/{event}', [AdminEventController::class, 'destroy'])->name('admin-events.destroy');
+
+    // Rute lain di bawah admin
     Route::get('/about', function () {
-        return view('about'); // Ganti 'about' dengan view yang sesuai
-    })->name('about');
-    
-
-
-    // CRUD event
-    Route::get('/events', [AdminEventController::class, 'index'])->name('admin.events.index');
-    Route::get('/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
-    Route::post('/events', [AdminEventController::class, 'store'])->name('admin.events.store');
-    Route::get('/events/{event}/edit', [AdminEventController::class, 'edit'])->name('admin.events.edit');
-    Route::put('/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
-    Route::delete('/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+        return view('admin.about'); // Ganti dengan view tentang admin
+    })->name('admin.about');
 });
 
-// Rute lainnya
-Route::get('/events', [EventController::class, 'index'])->name('events');
+// CRUD Events for Regular Users
+Route::middleware(['auth:web', 'verified'])->group(function () {
+    Route::get('/events', [EventController::class, 'index'])->name('events');
+    Route::get('/events/{event}', [EventController::class, 'show'])->name('events.show');
+});
+
+// Rute lainnya untuk pengguna biasa
 Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [EventController::class, 'index'])->name('news');
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
-Route::get('/about', [MoreaboutusController::class, 'index'])->name('about');
- //route more about us yang baru
-//  Route::get('/about', function () {
-//     return view('about'); // Sesuaikan dengan nama view
-// })->name('about');
-
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 // Autentikasi default Laravel
 require __DIR__.'/auth.php';
-
-Route::post('/ministry/{ministry}/join', [MinistryController::class, 'join'])->name('ministry.join');
