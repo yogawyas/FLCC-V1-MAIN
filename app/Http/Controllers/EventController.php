@@ -9,11 +9,11 @@ class EventController extends Controller
 {
     public function index()
     {
-        $availableEvents = Event::where('status', 'upcoming')
+        $availableEvents = Event::where('status', 'open')
             ->orderBy('date')
             ->get();
 
-        $previousEvents = Event::where('status', 'past')
+        $previousEvents = Event::where('status', 'closed')
             ->orderBy('date', 'desc')
             ->get();
 
