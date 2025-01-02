@@ -36,7 +36,7 @@ public function manageUsers($id)
     $ministry = Ministry::findOrFail($id);
 
     // Mengirim data ministry beserta pengguna yang terkait ke view
-    return view('ministry.manageuser', compact('ministry'));
+    return view('ministry.manageuserminis', compact('ministry'));
 }
 
 
