@@ -26,7 +26,7 @@
                     <div class="hidden space-x-8 sm:flex sm:ml-10">
                         <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
-                        </a>
+                        </a>    
                         <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Events
                         </a>
