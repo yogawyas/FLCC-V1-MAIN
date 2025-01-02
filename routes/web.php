@@ -114,6 +114,9 @@ require __DIR__.'/auth.php';
 //ministry
 Route::post('/ministry/{ministry}/join', [MinistryController::class, 'join'])->name('ministry.join');
 
+// routes/web.php buat ministries
+Route::get('ministries/{ministry}/users', [MinistryController::class, 'users'])->name('ministries.users');
+
 
 //edit ministry
 Route::get('/ministries/{id}/edit', [MinistryController::class, 'edit'])->name('ministries.edit');
