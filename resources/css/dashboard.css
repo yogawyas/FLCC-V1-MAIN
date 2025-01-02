@@ -1,0 +1,184 @@
+:root {
+    --primary-color: #ffd700;
+    --secondary-color: #ff5733;
+    --accent-color: #ffc107;
+    --background-color2: #272824;
+    --background-color1: black;
+    --background-color3: #191919;
+    --border-color: #272824;
+    --text-color: #fcfcfc;
+    --button-hover-color: #ff4500;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --card-background-color: #2f2f2f;
+}
+
+.header-nav {
+    background-color: var(--background-color1);
+    border-bottom: var(--border-color);
+}
+
+.header a{
+    color: var(--text-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.header a:hover{
+    border-bottom: 2px solid white;
+}
+
+.flcc {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    background: linear-gradient(90deg, #ffd700, #ffc300, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 150% 150%;
+    background-position: left bottom;
+    transition: all 5s ease-in-out;
+}
+
+.flcc:hover {
+    background: linear-gradient(90deg, #ffd700, #ffd700, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: right top;
+    background-size: 200% 200%;
+}
+
+
+#dashboard {
+    background-color: var(--background-color2);
+}
+
+/* .login {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 1px solid #4f4f4f;
+    border-radius: 4px;
+    transition: all 0.2s ease-in;
+    position: relative;
+    overflow: hidden;
+    font-size: 19px;
+    cursor: pointer;
+    color: black;
+    z-index: 1;
+}
+
+.login:before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.25);
+    top: 100%;
+    width: 140%;
+    height: 180%;
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.login:after {
+    content: "";
+    position: absolute;
+    left: 55%;
+    transform: translateX(-50%) scaleY(1) scaleX(1.45);
+    top: 180%;
+    width: 160%;
+    height: 190%;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: block;
+    transition: all 0.5s 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+    z-index: -1;
+}
+
+.login:hover {
+    color: #ffffff;
+    border: 1px solid var(--primary-color);
+}
+
+.login:hover:before {
+    top: -35%;
+    background-color: var(--primary-color);
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+}
+
+.login:hover:after {
+    top: -45%;
+    background-color: var(--primary-color);
+    transform: translateX(-50%) scaleY(1.3) scaleX(0.8);
+} */
+
+.login {
+    display: inline-block;
+    padding: 5px 0;
+    width: 100px;
+    border: 1px solid var(--background-color2);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-size: 19px;
+    cursor: pointer;
+    color: var(--primary-color);
+    z-index: 1;
+    background-color: transparent;
+}
+
+.login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: left 0.3s ease-in-out;
+}
+
+.login:hover {
+    color: var(--background-color1);
+}
+
+.login:hover::before {
+    left: 0;
+}
+
+.regis{
+    color: var(--text-color);
+    padding: 5px 0;
+    width: 100px;
+    transition: all 0.3s ease-in-out;
+    font-size: 19px;
+    border: 1px solid var(--background-color2);
+    border-radius: 4px;
+}
+
+.regis:hover{
+    border-color: var(--text-color);
+}
+
+.user{
+    color: var(--text-color);
+    cursor: text;
+}
+
+.logout{
+    color: var(--primary-color);
+}
+
+.logout:hover{
+    color: var(--secondary-color);
+}
+
+.footer {
+    background-color: var(--background-color1);
+    border-top: var(--border-color);
+}
+
+.footer h4{
+    color: var(--text-color);
+}

@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit Event</title>
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/css/event.css', 'resources/js/app.js'])
 </head>
 <body class="min-h-screen bg-gray-100 dark:bg-gray-900">
     @include('layouts.navigation')
