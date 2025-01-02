@@ -197,10 +197,11 @@
                                         class="w-full h-full object-cover">
                                     @else
                                     <div class="w-full h-full flex flex-col items-center justify-center text-gray-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                         </svg>
-                                        <span class="text-lg">Ministry Photo</span>
+                                        <span class="text-lg">Ministry Photo</span> -->
+                                        <img src="{{ asset('images/flcc.png') }}" alt="" class="w-full h-full">
                                     </div>
                                     @endif
                                 </div>
@@ -242,13 +243,13 @@
                                         <form action="{{ route('ministry.join', $ministry) }}" method="POST">
                                             @csrf
                                             <button type="submit"
-                                                class="w-full bg-violet-400 text-white py-3 rounded-lg hover:bg-violet-500 transition-colors font-medium">
+                                                class="join w-full text-white py-3 rounded-lg transition-colors font-medium">
                                                 Join Ministry
                                             </button>
                                         </form>
                                         @else
                                         <button disabled
-                                            class="w-full bg-gray-200 text-gray-500 py-3 rounded-lg cursor-not-allowed font-medium">
+                                            class="close w-full py-3 rounded-lg cursor-not-allowed font-medium">
                                             {{ $ministry->status === 'closed' ? 'Registration Closed' : 'No Slots Available' }}
                                         </button>
                                         @endif
