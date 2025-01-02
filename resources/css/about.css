@@ -63,11 +63,6 @@
     background-size: 200% 200%;
 }
 
-
-.about {
-    background-color: var(--background-color2);
-}
-
 /* .login {
     display: inline-block;
     padding: 12px 24px;
@@ -189,6 +184,32 @@
 
 .logout:hover{
     color: var(--secondary-color);
+}
+
+.about {
+    background-color: var(--background-color2);
+}
+
+.about p{
+    color: var(--text-color);
+}
+
+.about {
+    h1{
+        color: var(--primary-color);
+    }
+    
+    h2{
+        color: var(--primary-color);
+    }
+}
+
+li{
+    color: var(--accent-color);
+}
+
+.back{
+    color: var(--accent-color);
 }
 
 .footer {

@@ -71,14 +71,14 @@
     <div class="about">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="text-center">
-                <h1 class="text-4xl font-bold text-violet-500 mb-4">More About Us</h1>
-                <p class="text-gray-700 text-lg">
+                <h1 class="text-4xl font-bold text-violet-500 mb-4" data-aos="fade-up" data-aos-duration="1500">More About Us</h1>
+                <p class="text-gray-700 text-lg" data-aos="fade-up" data-aos-duration="1500">
                     Welcome to our platform! We are dedicated to providing the best services to our users.
                     Learn more about our mission, vision, and the values that drive us to excel every day.
                 </p>
 
                 <!-- Tampilkan informasi lebih lanjut -->
-                <div class="mt-6">
+                <div class="mt-6" data-aos="fade-up" data-aos-duration="1500">
                     <h2 class="text-3xl font-semibold text-gray-800">Our Recent Events</h2>
                     <p class="text-gray-600 mt-4">
                         Learn more about our latest events and activities.
@@ -86,15 +86,15 @@
                     <!-- Event list -->
                     <div class="mt-6">
                         <ul>
-                            <li><a href="{{ route('events') }}" class="text-violet-600 hover:text-violet-800">Upcoming Event 1</a></li>
-                            <li><a href="{{ route('events') }}" class="text-violet-600 hover:text-violet-800">Upcoming Event 2</a></li>
-                            <li><a href="{{ route('events') }}" class="text-violet-600 hover:text-violet-800">Upcoming Event 3</a></li>
+                            <li><a href="{{ route('events') }}">Upcoming Event 1</a></li>
+                            <li><a href="{{ route('events') }}">Upcoming Event 2</a></li>
+                            <li><a href="{{ route('events') }}">Upcoming Event 3</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Ministry Section -->
-                <div class="mt-6">
+                <div class="mt-6" data-aos="fade-up" data-aos-duration="1500">
                     <h2 class="text-3xl font-semibold text-gray-800">Our Ministry</h2>
                     <p class="text-gray-600 mt-4">
                         Explore the different ministries we offer to the community.
@@ -102,7 +102,7 @@
                     <div class="mt-6">
                         <ul>
                             @forelse($ministries as $ministry)
-                            <li><a href="{{ route('ministry') }}" class="text-violet-600 hover:text-violet-800">{{ $ministry->name }}</a></li>
+                            <li><a href="{{ route('ministry') }}">{{ $ministry->name }}</a></li>
                             @empty
                             @endforelse
                         </ul>
@@ -110,23 +110,23 @@
                 </div>
 
                 <!-- News Section -->
-                <div class="mt-6">
+                <div class="mt-6" data-aos="fade-up" data-aos-duration="1500">
                     <h2 class="text-3xl font-semibold text-gray-800">Latest News</h2>
                     <p class="text-gray-600 mt-4">
                         Stay updated with the latest news and announcements from our platform.
                     </p>
                     <div class="mt-6">
                         <ul>
-                            <li><a href="{{ route('news') }}" class="text-violet-600 hover:text-violet-800">News Article 1</a></li>
-                            <li><a href="{{ route('news') }}" class="text-violet-600 hover:text-violet-800">News Article 2</a></li>
-                            <li><a href="{{ route('news') }}" class="text-violet-600 hover:text-violet-800">News Article 3</a></li>
+                            <li><a href="{{ route('news') }}">News Article 1</a></li>
+                            <li><a href="{{ route('news') }}">News Article 2</a></li>
+                            <li><a href="{{ route('news') }}">News Article 3</a></li>
                         </ul>
                     </div>
                 </div>
 
                 <!-- Back to Home Button -->
-                <div class="mt-8">
-                    <a href="{{ route('welcome') }}" class="text-violet-400 hover:text-violet-500 text-2xl font-bold">
+                <div class="back mt-8" data-aos="fade-up" data-aos-duration="1500">
+                    <a href="{{ route('welcome') }}" class="text-2xl font-bold">
                         Back to Main Page
                     </a>
                 </div>

@@ -54,6 +54,23 @@
     background-size: 200% 200%;
 }
 
+.teks{
+    color: var(--text-color);
+}
+
+.open{
+    background-color: var(--primary-color);
+}
+
+.close{
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+}
+
+.more{
+    background-color: #ffed84;
+    color: var(--secondary-color);
+}
 
 .ministry {
     background-color: var(--background-color2);
@@ -189,6 +206,10 @@
 
 .logout:hover{
     color: var(--secondary-color);
+}
+
+.join{
+    background-color: var(--accent-color);
 }
 
 .footer {

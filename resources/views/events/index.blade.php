@@ -66,11 +66,11 @@
 
     <!-- Main Content -->
     <main class="event">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" data-aos="fade-up" data-aos-duration="1500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Available Events Section -->
             <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-8">Available Events</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Available Events</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
                     @forelse($availableEvents as $event)
                     <div class="card rounded-lg overflow-hidden shadow">
                         <div class="foto aspect-video flex items-center justify-center text-white">
@@ -115,8 +115,8 @@
 
             <!-- Previous Events Section -->
             <section>
-                <h2 class="text-3xl font-bold mb-8">Previous Events</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Previous Events</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
                     @forelse($previousEvents as $event)
                     <div class="card rounded-lg overflow-hidden shadow opacity-75">
                         <div class="foto aspect-video flex items-center justify-center text-white">
