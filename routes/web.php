@@ -33,8 +33,13 @@ Route::post('/logout', function () {
 // Rute untuk dashboard pengguna biasa
 Route::middleware(['auth:web', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        if (auth('web')->user()->isAdmin()) return view('dashboard');
+        else return redirect(route('welcome'));
     })->name('dashboard');
+
+    // Route::get('/dashboard', function () {
+    //     return auth('web')->user();
+    // })->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -93,14 +98,10 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 Route::get('/events', [EventController::class, 'index'])->name('events');
 Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [EventController::class, 'index'])->name('news');
-// Route::get('/about', function () {
-//     return view('about');
-// })->name('about');
+
+
+//route discover more about us
 Route::get('/about', [MoreaboutusController::class, 'index'])->name('about');
- //route more about us yang baru
-//  Route::get('/about', function () {
-//     return view('about'); // Sesuaikan dengan nama view
-// })->name('about');
 
 
 // Autentikasi default Laravel
