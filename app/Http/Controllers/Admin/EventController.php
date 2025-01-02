@@ -9,15 +9,17 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-    public function index()
-    {
-        $events = Event::latest()->paginate(10);
-        return view('admin.events.index', compact('events'));
-    }
+        public function index()
+        {
+            $events = Event::latest()->paginate(10);
+            $availableEvents = Event::where('status', 'open')->latest()->get();
+            $previousEvents = Event::where('status', 'closed')->latest()->get();
+            return view('events.index', compact('availableEvents', 'previousEvents'));
+        }
 
     public function create()
     {
-        return view('admin.events.create');
+        return view('events.create');
     }
 
     public function store(Request $request)
@@ -38,13 +40,13 @@ class EventController extends Controller
 
         Event::create($validated);
 
-        return redirect()->route('admin.events.index')
+        return redirect()->route('events')
             ->with('success', 'Event created successfully.');
     }
 
     public function edit(Event $event)
     {
-        return view('admin.events.edit', compact('event'));
+        return view('events.edit', compact('event'));
     }
 
     public function update(Request $request, Event $event)
@@ -68,7 +70,7 @@ class EventController extends Controller
 
         $event->update($validated);
 
-        return redirect()->route('admin.events.index')
+        return redirect()->route('events')
             ->with('success', 'Event updated successfully.');
     }
 
@@ -80,7 +82,7 @@ class EventController extends Controller
         
         $event->delete();
 
-        return redirect()->route('admin.events.index')
+        return redirect()->route('events')
             ->with('success', 'Event deleted successfully.');
     }
 }

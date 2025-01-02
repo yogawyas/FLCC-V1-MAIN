@@ -13,7 +13,11 @@ class Event extends Model
         'date',
         'location',
         'status',
-        'max_participants'
+        'max_participants',
+    ];
+
+    protected $casts = [
+        'date' => 'datetime', // Konversi kolom 'date' menjadi objek Carbon
     ];
 
     public function users()
@@ -21,15 +25,15 @@ class Event extends Model
         return $this->belongsToMany(User::class)->withTimestamps();
     }
 
-    // Accessor untuk format tanggal
+    // Accessor untuk format tanggal panjang
     public function getFormattedDateAttribute()
     {
-        return \Carbon\Carbon::parse($this->date)->format('F j, Y');
+        return $this->date->format('F j, Y'); // Contoh: January 1, 2025
     }
 
     // Mutator untuk status
     public function setStatusAttribute($value)
     {
-        $this->attributes['status'] = strtoupper($value);
+        $this->attributes['status'] = strtoupper($value); // Simpan status dalam huruf besar
     }
 }

@@ -18,13 +18,13 @@ class AdminEventController extends Controller
     public function index()
     {
         $events = Event::all();  // Mengambil semua data event dari database
-        return view('admin.events.index', compact('events'));  // Mengirim data event ke view admin
+        return view('events.index', compact('events'));  // Mengirim data event ke view admin
     }
 
     // Menampilkan form untuk membuat event baru
     public function create()
     {
-        return view('admin.events.create');
+        return view('events.create');
     }
 
     // Menyimpan event baru
@@ -56,13 +56,13 @@ class AdminEventController extends Controller
         ]);
 
         // Redirect ke halaman daftar event dengan pesan sukses
-        return redirect()->route('admin.events.index')->with('success', 'Event created successfully!');
+        return redirect()->route('events.index')->with('success', 'Event created successfully!');
     }
 
     // Menampilkan form untuk mengedit event
     public function edit(Event $event)
     {
-        return view('admin.events.edit', compact('event'));
+        return view('events.edit', compact('event'));
     }
 
     // Mengupdate data event
@@ -94,7 +94,7 @@ class AdminEventController extends Controller
         ]);
 
         // Redirect ke halaman daftar event dengan pesan sukses
-        return redirect()->route('admin.events.index')->with('success', 'Event updated successfully!');
+        return redirect()->route('events.index')->with('success', 'Event updated successfully!');
     }
 
     // Menghapus event
@@ -102,6 +102,6 @@ class AdminEventController extends Controller
     {
         // Hapus event dari database
         $event->delete();
-        return redirect()->route('admin.events.index')->with('success', 'Event deleted successfully!');
+        return redirect()->route('events.index')->with('success', 'Event deleted successfully!');
     }
 }

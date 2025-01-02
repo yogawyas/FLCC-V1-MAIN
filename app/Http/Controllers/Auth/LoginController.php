@@ -16,7 +16,7 @@ class LoginController extends Controller
         
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
+            
             // Redirect berdasarkan role
             if ($user->is_admin) {
                 return redirect()->intended('/admin/dashboard'); // Untuk admin

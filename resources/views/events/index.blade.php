@@ -31,13 +31,7 @@
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
-                        @auth
-                            @if(Auth::user()->is_admin)
-                                <a href="{{ route('admin.events.index') }}" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                                    Manage Events
-                                </a>
-                            @endif
-                        @endauth
+                        
                     </div>
                 </div>
 
@@ -66,85 +60,96 @@
 
     <!-- Main Content -->
     <main class="py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-@auth('admin')
-    <p>Admin is logged in</p>
-@endauth
-
-@auth('web')
-    <p>User is logged in</p>
-@endauth
-            <!-- Available Events Section -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Available Events</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @forelse($availableEvents as $event)
-                    <div class="bg-white rounded-lg overflow-hidden shadow">
-                        <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
-                            @if($event->image)
-                                <img src="{{ asset('storage/' . $event->image) }}" 
-                                     alt="{{ $event->title }}" 
-                                     class="w-full h-full object-cover">
-                            @else
-                                <span class="text-lg">{{ $event->title }}</span>
-                            @endif
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ $event->description }}</p>
-                            <div class="flex justify-between items-center">
-                                <div>
-                                    <p class="text-sm text-gray-500">
-                                        {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
-                                    </p>
-                                    <p class="text-sm text-gray-500">{{ $event->location }}</p>
-                                </div>
-                                <button class="bg-violet-400 text-white px-4 py-2 rounded hover:bg-violet-500 transition-colors">
-                                    Sign Up
-                                </button>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Available Events Section -->
+        <section class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Available Events</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @forelse($availableEvents as $event)
+                <div class="bg-white rounded-lg overflow-hidden shadow">
+                    <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
+                        @if($event->image)
+                            <img src="{{ asset('storage/' . $event->image) }}" 
+                                 alt="{{ $event->title }}" 
+                                 class="w-full h-full object-cover">
+                        @else
+                            <span class="text-lg">{{ $event->title }}</span>
+                        @endif
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ $event->description }}</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-sm text-gray-500">
+                                    {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
+                                </p>
+                                <p class="text-sm text-gray-500">{{ $event->location }}</p>
                             </div>
-                        </div>
-                    </div>
-                    @empty
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600">No available events at the moment.</p>
-                    </div>
-                    @endforelse
-                </div>
-            </section>
-
-            <!-- Previous Events Section -->
-            <section>
-                <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Previous Events</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @forelse($previousEvents as $event)
-                    <div class="bg-white rounded-lg overflow-hidden shadow opacity-75">
-                        <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
-                            @if($event->image)
-                                <img src="{{ asset('storage/' . $event->image) }}" 
-                                     alt="{{ $event->title }}" 
-                                     class="w-full h-full object-cover">
-                            @else
-                                <span class="text-lg">{{ $event->title }}</span>
+                            @if(auth()->user()->isAdmin())
+                            <div>
+                                <a href="{{ route('events.edit', $event->id) }}" class="bg-red-500 text-Blue px-4 py-2 rounded hover:bg-red-600">Edit Event</a>
+                                <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="bg-red-500 text-Red px-4 py-2 rounded hover:bg-red-600">Delete Event</button>
+                                </form>
+                            </div>
                             @endif
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ $event->description }}</p>
-                            <p class="text-sm text-gray-500">
-                                {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
-                            </p>
-                            <p class="text-sm text-gray-500">{{ $event->location }}</p>
+                    </div>
+                </div>
+                @empty
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-600">No available events at the moment.</p>
+                </div>
+                @endforelse
+            </div>
+        </section>
+
+        <!-- Previous Events Section -->
+        <section>
+            <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Previous Events</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @forelse($previousEvents as $event)
+                <div class="bg-white rounded-lg overflow-hidden shadow opacity-75">
+                    <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
+                        @if($event->image)
+                            <img src="{{ asset('storage/' . $event->image) }}" 
+                                 alt="{{ $event->title }}" 
+                                 class="w-full h-full object-cover">
+                        @else
+                            <span class="text-lg">{{ $event->title }}</span>
+                        @endif
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
+                        <p class="text-gray-600 mb-4">{{ $event->description }}</p>
+                        <p class="text-sm text-gray-500">
+                            {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
+                        </p>
+                        <p class="text-sm text-gray-500">{{ $event->location }}</p>
+                        <div class="mt-4">
+                            @if(auth()->user()->isAdmin())
+                            <a href="{{ route('events.edit', $event->id) }}" class="bg-red-500 text-Blue px-4 py-2 rounded hover:bg-red-600">Edit Event</a>
+                            <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="bg-red-500 text-Red px-4 py-2 rounded hover:bg-red-600">Delete Event</button>
+                            </form>
+                            @endif
                         </div>
                     </div>
-                    @empty
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600">No previous events to show.</p>
-                    </div>
-                    @endforelse
                 </div>
-            </section>
-        </div>
-    </main>
+                @empty
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-600">No previous events to show.</p>
+                </div>
+                @endforelse
+            </div>
+        </section>
+    </div>
+</main>
+    
 </body>
 </html>

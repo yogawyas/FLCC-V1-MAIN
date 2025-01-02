@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\EventController;
+// use App\Http\Controllers\EventController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\MoreaboutusController;
 use App\Http\Controllers\ProfileController;
@@ -86,16 +87,18 @@ Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
 
 
     // CRUD event
-    Route::get('/events', [AdminEventController::class, 'index'])->name('admin.events.index');
-    Route::get('/events/create', [AdminEventController::class, 'create'])->name('admin.events.create');
-    Route::post('/events', [AdminEventController::class, 'store'])->name('admin.events.store');
-    Route::get('/events/{event}/edit', [AdminEventController::class, 'edit'])->name('admin.events.edit');
-    Route::put('/events/{event}', [AdminEventController::class, 'update'])->name('admin.events.update');
-    Route::delete('/events/{event}', [AdminEventController::class, 'destroy'])->name('admin.events.destroy');
+
+    
 });
 
 // Rute lainnya
 Route::get('/events', [EventController::class, 'index'])->name('events');
+Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
+Route::get('/events/{event}/edit', [EventController::class, 'edit'])->name('events.edit');
+Route::put('/events/{event}', [EventController::class, 'update'])->name('events.update');
+Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('events.destroy');
+
 Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [EventController::class, 'index'])->name('news');
 
