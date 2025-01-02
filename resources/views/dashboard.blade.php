@@ -73,6 +73,7 @@
                     <br>
                     <h1>Ministries</h1>
                     <p>edit, create, delete (user dan Ministry), export excel</p>
+                    <a href="{{ route('ministry.create') }}" class="bg-red-500 text-Blue px-4 py-2 rounded hover:bg-red-600"> Create Ministry</a>
                     <br>
                     <h1>News</h1>
                     <p>Create, Edit, Delete</p>

@@ -84,3 +84,4 @@ class MinistryController extends Controller
             ->with('success', 'Ministry deleted successfully.');
     }
 }
+

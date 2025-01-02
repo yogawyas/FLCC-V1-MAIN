@@ -119,12 +119,22 @@ Route::get('ministries/{ministry}/users', [MinistryController::class, 'users'])-
 
 
 //edit ministry
-Route::get('/ministries/{id}/edit', [MinistryController::class, 'edit'])->name('ministries.edit');
+Route::get('/ministries/{ministry}/edit', [MinistryController::class, 'edit'])->name('ministries.edit');
 
-// Menampilkan halaman manage users
-Route::get('/ministries/{ministry}/users/management', [MinistryController::class, 'manageUsers'])
-    ->name('ministries.users.management');
+//edit ministry
+Route::put('/ministries/{ministry}', [MinistryController::class, 'update'])->name('ministries.update');
 
+
+// Tambahkan route untuk manage user
+Route::get('/manage-user', [MinistryController::class, 'users'])->name('manage.user');
 // Menghapus user dari ministry
 Route::delete('/ministries/{ministry}/users/{user}', [MinistryController::class, 'removeUser'])
     ->name('ministries.users.remove');
+
+    
+//route create ministry
+    Route::get('/ministry/create', [MinistryController::class, 'create'])->name('ministry.create');
+    Route::post('/ministry/store', [MinistryController::class, 'store'])->name('ministry.store');
+
+
+
