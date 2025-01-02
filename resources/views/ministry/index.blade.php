@@ -149,6 +149,18 @@
                                     {{ $ministry->status === 'closed' ? 'Closed' : 'Full' }}
                                 </button>
                                 @endif
+                                <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
+                                <a href="{{ route('ministries.edit', $ministry->id) }}"
+                                    class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
+                                    Edit
+                                </a>
+
+                                <!-- Tombol Manage Users yang mengarahkan ke halaman manage users ministry -->
+                                <a href="{{ route('ministries.users', $ministry->id) }}"
+                                    class="flex-1 bg-red-400 text-white px-4 py-2 rounded-lg">
+                                    Manage Users
+                                </a>
+
                         </div>
                     </div>
                 </div>

@@ -14,3 +14,4 @@ class AdminMinistryController extends Controller
         return view('admin.dashboard', compact('totalMinistries'));
     }
 }
+

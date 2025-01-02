@@ -16,12 +16,20 @@ class Ministry extends Model
         'total_slots',
     ];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class)
-            ->withPivot('portfolio')
-            ->withTimestamps();
-    }
+    // public function users()
+    // {
+    //     return $this->belongsToMany(User::class)
+    //         ->withPivot('portfolio')
+    //         ->withTimestamps();
+    // }
+
+    
+    // Dalam Ministry.php
+public function users()
+{
+    return $this->belongsToMany(User::class);
+}
+
 
     protected static function boot()
     {

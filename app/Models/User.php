@@ -49,4 +49,11 @@ class User extends Authenticatable
     {
         return $this->is_admin;
     }
-}
+
+//     // Dalam User.php
+// public function ministries()
+// {
+//     return $this->belongsToMany(Ministry::class);
+// }
+
+ }

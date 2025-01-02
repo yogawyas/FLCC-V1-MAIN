@@ -110,4 +110,18 @@ Route::get('/about', [MoreaboutusController::class, 'index'])->name('about');
 // Autentikasi default Laravel
 require __DIR__.'/auth.php';
 
+
+//ministry
 Route::post('/ministry/{ministry}/join', [MinistryController::class, 'join'])->name('ministry.join');
+
+
+//edit ministry
+Route::get('/ministries/{id}/edit', [MinistryController::class, 'edit'])->name('ministries.edit');
+
+// Menampilkan halaman manage users
+Route::get('/ministries/{ministry}/users', [MinistryController::class, 'manageUsers'])
+    ->name('ministries.users.manage');
+
+// Menghapus user dari ministry
+Route::delete('/ministries/{ministry}/users/{user}', [MinistryController::class, 'removeUser'])
+    ->name('ministries.users.remove');

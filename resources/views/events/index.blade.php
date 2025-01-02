@@ -129,6 +129,9 @@
                             {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
                         </p>
                         <p class="text-sm text-gray-500">{{ $event->location }}</p>
+                        
+                        
+                        <!-- cek apakah dia admin atau bukan -->
                         <div class="mt-4">
                             @if(auth()->user()->isAdmin())
                             <a href="{{ route('events.edit', $event->id) }}" class="bg-red-500 text-Blue px-4 py-2 rounded hover:bg-red-600">Edit Event</a>
@@ -139,6 +142,7 @@
                             </form>
                             @endif
                         </div>
+                        <!-- sampe sini -->
                     </div>
                 </div>
                 @empty
