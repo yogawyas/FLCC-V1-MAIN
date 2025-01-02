@@ -149,6 +149,7 @@
                                     {{ $ministry->status === 'closed' ? 'Closed' : 'Full' }}
                                 </button>
                                 @endif
+                                @if(auth('web')->user()->isAdmin())
                                 <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
                                 <a href="{{ route('ministries.edit', $ministry->id) }}"
                                     class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
@@ -160,6 +161,7 @@
                                     class="flex-1 bg-red-400 text-white px-4 py-2 rounded-lg">
                                     Manage Users
                                 </a>
+                                @endif
 
                         </div>
                     </div>
