@@ -33,6 +33,7 @@
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
+                        
                     </div>
                 </div>
 
