@@ -7,9 +7,6 @@ use Illuminate\Http\Request;
 
 class IsAdmin
 {
-    /**
-     * Handle an incoming request.
-     */
     public function handle(Request $request, Closure $next)
     {
         if (auth('web')->user() && auth('web')->user()->isAdmin()) {
