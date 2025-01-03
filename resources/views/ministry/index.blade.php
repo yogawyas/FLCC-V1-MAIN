@@ -121,13 +121,11 @@
                                 </div>
                                 @endif
                             </div>
-
-<<<<<<< HEAD
                             <!-- Ministry Content -->
                             <div class="bg-white p-6">
                                 <h3 class="text-xl font-bold mb-3 text-gray-900">{{ $ministry->name }}</h3>
                                 <p class="text-gray-600-300 mb-6 line-clamp-2">{{ $ministry->description }}</p>
-=======
+                            </div>
                             <!-- Action Buttons -->
                             <div class="flex gap-2">
                                 <button onclick="openModal('modal-{{ $ministry->id }}')"
@@ -159,7 +157,7 @@
                                         class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
                                         Edit
                                     </a>
->>>>>>> 444f7d884c2d4a6fce19180a27f6b2472ccc4b2d
+                                    @endif
 
                                 <!-- Quick Info -->
                                 <div class="space-y-2 mb-6">
@@ -179,7 +177,6 @@
                                         <span>{{ $ministry->users->count() }}/{{ $ministry->total_slots }} Slots</span>
                                     </div>
                                 </div>
-
                                 <!-- Action Buttons -->
                                 <div class="flex gap-2">
                                     <button onclick="openModal('modal-{{ $ministry->id }}')"
