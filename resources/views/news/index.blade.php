@@ -1,139 +1,58 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!-- resources/views/news/index.blade.php -->
+<x-app-layout>
+    <div class="news max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="mb-12">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Manage News</h2>
+                <a href="{{ route('admin.news.create') }}" class="bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
+                    Create News
+                </a>
+            </div>
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ministry Department - Front Liner Campus Community</title>
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-
-<body class="font-sans antialiased bg-gray-50 dark:bg-black">
-    <!-- [Previous navigation code remains the same] -->
-    <!-- Navigation -->
-    <nav class="bg-white dark:bg-black border-b border-gray-100 dark:border-gray-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
-                    <!-- Logo -->
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
-                            FLCC
-                        </a>
-                    </div>
-
-                    <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:flex sm:ml-10">
-                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard*') ? 'text-violet-400' : 'text-gray-500' }}">
-                            Dashboard
-                        </a>
-                        <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events') ? 'text-violet-400' : 'text-gray-500' }}">
-                            Events
-                        </a>
-                        <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
-                            Ministry
-                        </a>
-                    </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50 dark:bg-gray-700">
+                            <tr>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Title</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Featured</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Created At</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white dark:bg-gray-800 divide-y divide-gray-200">
+                            @foreach($news as $item)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="text-sm text-gray-900 dark:text-white">{{ $item->title }}</div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-sm text-gray-900 dark:text-white">{{ $item->is_featured ? 'Yes' : 'No' }}</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-300">
+                                    {{ $item->created_at->format('Y-m-d') }}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                    <a href="{{ route('admin.news.edit', $item) }}" class="text-violet-600 hover:text-violet-900 dark:text-violet-400 dark:hover:text-violet-300 mr-3">Edit</a>
+                                    <form action="{{ route('admin.news.destroy', $item) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-300" 
+                                                onclick="return confirm('Are you sure you want to delete this news?')">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
-
-                <!-- Authentication -->
-                <div class="flex items-center">
-                    @auth
-                    <div class="flex items-center space-x-4">
-                        <span class="text-sm text-gray-500">{{ Auth::user()->name }}</span>
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
-                            <button type="submit" class="text-sm text-gray-500 hover:text-gray-700">
-                                Logout
-                            </button>
-                        </form>
-                    </div>
-                    @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:text-gray-700">Login</a>
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-500 hover:text-gray-700">Register</a>
-                    @endauth
+                <div class="px-6 py-4">
+                    {{ $news->links() }}
                 </div>
             </div>
-        </div>
-    </nav>
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-    <!-- Available Events Section -->
-    <div class="mb-12">
-        <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Available News</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @forelse($allNews as $event)
-            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow">
-                @if($event->image)
-                    <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}" 
-                         class="w-full aspect-video object-cover">
-                @else
-                    <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
-                        <span class="text-lg">{{ $event->title }}</span>
-                    </div>
-                @endif
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{{ $event->title }}</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">{{ Str::limit($event->description, 100) }}</p>
-                    <div class="flex justify-between items-center">
-                        <div class="space-y-1">
-                            <span class="block text-sm text-gray-500">
-                                {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
-                            </span>
-                            <span class="block text-sm text-gray-500">
-                                {{ $event->location }}
-                            </span>
-                        </div>
-                        <button class="bg-violet-400 text-white px-4 py-2 rounded hover:bg-violet-500 transition-colors">
-                            Sign Up
-                        </button>
-                    </div>
-                </div>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-8">
-                <p class="text-gray-600 dark:text-gray-400">No available news at the moment.</p>
-            </div>
-            @endforelse
         </div>
     </div>
-
-    <!-- Previous Events Section -->
-    <div>
-        <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Previous News</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            @forelse($previousNews as $event)
-            <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow opacity-75">
-                @if($event->image)
-                    <img src="{{ asset('storage/' . $event->image) }}" alt="{{ $event->title }}" 
-                         class="w-full aspect-video object-cover">
-                @else
-                    <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
-                        <span class="text-lg">{{ $event->title }}</span>
-                    </div>
-                @endif
-                <div class="p-6">
-                    <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{{ $event->title }}</h3>
-                    <p class="text-gray-600 dark:text-gray-400 mb-4">{{ Str::limit($event->description, 100) }}</p>
-                    <div class="space-y-1">
-                        <span class="block text-sm text-gray-500">
-                            {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
-                        </span>
-                        <span class="block text-sm text-gray-500">
-                            {{ $event->location }}
-                        </span>
-                    </div>
-                </div>
-            </div>
-            @empty
-            <div class="col-span-full text-center py-8">
-                <p class="text-gray-600 dark:text-gray-400">No previous news to show.</p>
-            </div>
-            @endforelse
-        </div>
-    </div>
-</div>
-</body>
-
-</html>
+</x-app-layout>

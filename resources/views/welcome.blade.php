@@ -5,36 +5,45 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Front Liner Campus Community</title>
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/css/welcome.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
+<body class="font-sans antialiased">
     <!-- Navigation -->
-    <nav class="bg-white dark:bg-black border-b border-gray-100 dark:border-gray-700">
+    <nav class="header-nav border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
+                        <a href="{{ route('dashboard') }}" class="flcc font-bold text-xl">
                             FLCC
                         </a>
                     </div>
 
                     <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:flex sm:ml-10">
+                    <div class="header hidden space-x-8 sm:flex sm:ml-10">
                         <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
-                        </a>    
+                        </a>
                         <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Events
                         </a>
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
+<<<<<<< HEAD
                         
+=======
+                        <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('about*') ? 'text-violet-400' : 'text-gray-500' }}">
+                            About Us
+                        </a>
+>>>>>>> e11e9223d1bd1f35a8a8b9f6e24b48840ad7b13d
                     </div>
+
                 </div>
 
                 <!-- Authentication -->
@@ -43,20 +52,20 @@
                     <!-- <p class="text-sm text-gray-500 mr-4">Welcome, {{ auth()->check() ? auth()->user()->name : 'Guest' }}</p> -->
 
                     @auth
-                    <div class="relative">
-                        <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 focus:outline-none transition duration-150 ease-in-out">
+                    <div class="flex items-center space-x-4">
+                        <button class="user flex items-center text-sm font-medium 0 focus:outline-none transition duration-150 ease-in-out">
                             {{ Auth::user()->name }}
                         </button>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-                            <button type="submit" class="text-sm text-gray-500 hover:text-gray-700 ml-4">
+                            <button type="submit" class="logout text-sm ml-4">
                                 Logout
                             </button>
                         </form>
                     </div>
                     @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:text-gray-700">Login</a>
-                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-500 hover:text-gray-700">Register</a>
+                    <a href="{{ route('register') }}" class="regis">Register</a>
+                    <a href="{{ route('login') }}" class="login ml-4">Login</a>
                     @endauth
                 </div>
             </div>
@@ -64,10 +73,10 @@
     </nav>
 
     <!-- Main Content -->
-    <div class="bg-gray-50 dark:bg-black">
+    <div id="welcome">
         <!-- Video Section -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="mb-12 rounded-lg overflow-hidden aspect-video">
+            <div class="mb-12 rounded-lg overflow-hidden aspect-video" data-aos="fade-up" data-aos-duration="1000">
                 <iframe class="w-full h-full"
                     src="https://www.youtube.com/embed/Fg0Tn_v8gJ0?autoplay=1"
                     frameborder="0"
@@ -77,16 +86,16 @@
             </div>
 
             <!-- Vision & Mission -->
-            <div class="mb-12 text-center max-w-4xl mx-auto">
+            <div class="vm flex justify-between mb-12 max-w-7xl mx-auto" data-aos="fade-up" data-aos-duration="1000">
                 <div class="mb-8">
-                    <h2 class="text-3xl font-semibold mb-4">Our Vision</h2>
-                    <p class="text-gray-600 dark:text-gray-400">
+                    <h2 class="text-gray-400 text-xl font-semibold mb-4">Our Vision</h2>
+                    <p class="v text-2xl">
                         Transforming communities, raising next generation of leaders.
                     </p>
                 </div>
                 <div>
-                    <h2 class="text-3xl font-semibold mb-4">Our Mission</h2>
-                    <p class="text-gray-600 dark:text-gray-400">
+                    <h2 class="text-gray-400 text-xl font-semibold mb-4">Our Mission</h2>
+                    <p class="text-2xl">
                         An assembly of next generation and discipling next generation to experience God and find their calling so they can transform and influence their communities through kingdom values.
                     </p>
                 </div>
@@ -94,12 +103,12 @@
 
             <!-- News Section -->
             <div class="mb-12">
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white">FLCC's NEWS</h2>
-                    <a href="{{ route('news') }}" class="text-violet-400 hover:text-violet-500">View All News ></a>
+                <div class="flex justify-between items-center mb-8" data-aos="fade-up-right" data-aos-duration="1500">
+                    <h2 class="text-3xl font-bold text-white">FLCC's NEWS</h2>
+                    <a href="{{ route('news') }}" class="news">View All News ></a>
                 </div>
 
-                <div class="relative">
+                <div class="relative" data-aos="fade-up" data-aos-duration="1500">
                     <div class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide">
                         @forelse($news ?? [] as $newsItem)
                         <div class="bg-violet-400 rounded-lg p-8 min-w-[300px] aspect-video flex-shrink-0">
@@ -107,9 +116,15 @@
                             <p class="text-white/90">{{ Str::limit($newsItem->content, 100) }}</p>
                         </div>
                         @empty
-                        <div class="bg-transparent rounded-lg p-8 min-w-[300px] aspect-video flex items-center justify-center text-white flex-shrink-0">
-                            No news available
+                        <div class="overflow-hidden">
+                            <div
+                                data-aos="fade-up"
+                                data-aos-duration="1500"
+                                class="overflow-hidden bg-transparent rounded-lg p-8 min-w-[300px] aspect-video flex items-center justify-center text-white text-center truncate flex-shrink-0">
+                                No news available
+                            </div>
                         </div>
+
 
                         @endforelse
                     </div>
@@ -118,27 +133,27 @@
 
             <!-- Pastors Section -->
             <div class="mb-12">
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="text-gray-400 grid md:grid-cols-2 gap-8">
                     <!-- Our Associate Youth Pastor -->
-                    <div>
-                        <div class="text-center mb-8">
+                    <!-- <div>
+                        <div class="text-center mb-8" data-aos="fade-right" data-aos-duration="1500">
                             <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
                             <h3 class="text-xl">Stephanie Fenuela</h3>
                         </div>
-                        <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
+                        <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden" data-aos="fade-up-right" data-aos-duration="1500">
                             <img src="{{ asset('storage/photos/stephanie_fenuela.jpg') }}" alt="Stephanie Fenuela" class="w-full h-full object-cover">
 
 
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Our Youth Pastor -->
                     <div>
-                        <div class="text-center mb-8">
+                        <div class="text-center mb-8" data-aos="fade-right" data-aos-duration="1500">
                             <h2 class="text-2xl font-bold mb-2">Our Youth Pastor</h2>
                             <h3 class="text-xl">Joshua Hezer</h3>
                         </div>
-                        <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden">
+                        <div class="max-w-md mx-auto rounded-lg aspect-square overflow-hidden" data-aos="fade-up-right" data-aos-duration="1500">
                             <img src="{{ asset('storage/photos/Joshua_hezer.jpg') }}" alt="Joshua Hezer" class="w-full h-full object-cover">
                         </div>
                     </div>
@@ -147,8 +162,8 @@
 
             <!-- More About Us Button -->
 
-            <div class="text-center">
-                <a href="{{ route('about') }}" class="text-violet-400 hover:text-violet-500 text-2xl font-bold">
+            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
+                <a href="{{ route('about') }}" class="us text-2xl font-bold">
                     Discover More About Us
                 </a>
 
@@ -160,7 +175,7 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-white dark:bg-black border-t border-gray-200 dark:border-gray-700">
+    <footer class="footer">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
@@ -175,6 +190,11 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

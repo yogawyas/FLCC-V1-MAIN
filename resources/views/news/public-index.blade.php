@@ -1,18 +1,18 @@
-<!-- resources/views/ministry/index.blade.php -->
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Ministry Department - Front Liner Campus Community</title>
+    <title>News - Front Liner Campus Community</title>
     <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/css/ministry.css', 'resources/js/app.js'])
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/css/news.css', 'resources/js/app.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
-<body class="font-sans antialiased bg-gray-50 dark:bg-black">
+<body class="font-sans antialiased">
     <!-- [Previous navigation code remains the same] -->
     <!-- Navigation -->
     <nav class="header-nav">
@@ -21,7 +21,7 @@
                 <div class="flex">
                     <!-- Logo -->
                     <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
+                        <a href="{{ route('welcome') }}" class="flcc font-bold text-xl">
                             FLCC
                         </a>
                     </div>
@@ -63,45 +63,39 @@
             </div>
         </div>
     </nav>
-<div class="container">
-    <h1>Manage Users in {{ $ministry->name }}</h1>
-
-    <!-- Menampilkan pesan sukses jika ada -->
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
+    <div class="news max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Available Events Section -->
+        <div class="mb-12">
+            <h2 class="text-3xl font-bold mb-8 text-gray-900 dark:text-white">Available News</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @forelse($allNews as $event)
+                <div class="bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow">
+                    @if($event->image_url)
+                    <img src="{{ asset('storage/' . $event->image_url) }}" alt="{{ $event->title }}"
+                        class="w-full aspect-video object-cover">
+                    @else
+                    <div class="bg-violet-400 aspect-video flex items-center justify-center text-white">
+                        <span class="text-lg">{{ $event->title }}</span>
+                    </div>
+                    @endif
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">{{ $event->title }}</h3>
+                        <p class="text-gray-600 dark:text-gray-400 mb-4">{{ Str::limit($event->content, 100) }}</p>
+                        
+                    </div>
+                </div>
+                @empty
+                <div class="col-span-full text-center py-8">
+                    <p class="text-gray-600 dark:text-gray-400">No available news at the moment.</p>
+                </div>
+                @endforelse
+            </div>
         </div>
-    @endif
 
-    <!-- Users Table -->
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach($ministry->users as $user)
-            <tr>
-                <td>{{ $user->id }}</td>
-                <td>{{ $user->username }}</td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    <form action="{{ route('ministries.users.remove', [$ministry->id, $user->id]) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure?')">Remove</button>
-                    </form>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
-
-    <a href="{{ route('ministry') }}" class="btn btn-secondary">Back</a>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
+
 </html>
