@@ -60,8 +60,8 @@
                         </form>
                     </div>
                     @else
-                    <button class="regis"><a href="{{ route('register') }}" class="text-sm">Register</a></button>
-                    <button class="login ml-4"><a href="{{ route('login') }}" class="text-sm">Login</a></button>
+                    <a href="{{ route('register') }}" class="regis">Register</a>
+                    <a href="{{ route('login') }}" class="login ml-4">Login</a>
                     @endauth
                 </div>
             </div>
@@ -131,7 +131,7 @@
             <div class="mb-12">
                 <div class="text-gray-400 grid md:grid-cols-2 gap-8">
                     <!-- Our Associate Youth Pastor -->
-                    <div>
+                    <!-- <div>
                         <div class="text-center mb-8" data-aos="fade-right" data-aos-duration="1500">
                             <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
                             <h3 class="text-xl">Stephanie Fenuela</h3>
@@ -141,7 +141,7 @@
 
 
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- Our Youth Pastor -->
                     <div>

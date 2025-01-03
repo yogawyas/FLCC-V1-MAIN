@@ -56,8 +56,8 @@
                         </form>
                     </div>
                     @else
-                    <button class="regis"><a href="{{ route('register') }}" class="text-sm">Register</a></button>
-                    <button class="login ml-4"><a href="{{ route('login') }}" class="text-sm">Login</a></button>
+                    <a href="{{ route('register') }}" class="regis">Register</a>
+                    <a href="{{ route('login') }}" class="login ml-4">Login</a>
                     @endauth
                 </div>
             </div>
@@ -66,98 +66,116 @@
 
     <!-- Main Content -->
     <main class="event">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
             <!-- Available Events Section -->
-            <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Available Events</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
-                    @forelse($availableEvents as $event)
-                    <div class="card rounded-lg overflow-hidden shadow">
-                        <div class="foto aspect-video flex items-center justify-center text-white">
-                            @if($event->image)
-                            <img src="{{ asset('storage/' . $event->image) }}"
-                                alt="{{ $event->title }}"
-                                class="w-full h-full object-cover">
-                            @else
-                            <span class="text-lg">{{ $event->title }}</span>
-                            @endif
-                        </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ $event->description }}</p>
-                            <div class="items-center">
-                                <div>
-                                    <p class="text-sm text-gray-500">
-                                        {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
-                                    </p>
-                                    <p class="text-sm text-gray-500">{{ $event->location }}</p>
+            <div>
+                <section class="mb-12">
+                    <div class="flex justify-between">
+                        <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Available Events</h2>
+                        @if (Auth::check() && Str::endsWith(Auth::user()->email, '@admin.com'))
+                        <a href="{{ route('events.create') }}" class="Btn" data-aos="fade-up" data-aos-duration="1500">
+                            <div class="sign">+</div>
+                            <div class="text">Create</div>
+                        </a>
+                        @endif
+                    </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
+                        @forelse($availableEvents as $event)
+                        <div class="card rounded-lg overflow-hidden shadow">
+                            <div class="foto aspect-video flex items-center justify-center text-white">
+                                @if($event->image)
+                                <img src="{{ asset('storage/' . $event->image) }}"
+                                    alt="{{ $event->title }}"
+                                    class="w-full h-full object-cover">
+                                @else
+                                <span class="text-lg">{{ $event->title }}</span>
+                                @endif
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
+                                <p class="text-gray-600 mb-4">{{ $event->description }}</p>
+                                <div class="items-center">
+                                    <div>
+                                        <p class="text-sm text-gray-500">
+                                            {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
+                                        </p>
+                                        <p class="text-sm text-gray-500">{{ $event->location }}</p>
+                                    </div>
+                                    @if(auth()->user()->isAdmin())
+                                    <div class="mt-4">
+                                        <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
+                                        <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="delete rounded">Delete Event</button>
+                                        </form>
+                                    </div>
+                                    @endif
                                 </div>
-                                @if(auth()->user()->isAdmin())
+                            </div>
+                        </div>
+                        @empty
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-600">No available events at the moment.</p>
+                        </div>
+                        @endforelse
+                    </div>
+                </section>
+                <div>
+                    {{ $availableEvents->links('vendor.pagination.bootstrap-4') }}
+                </div>
+            </div>
+
+            <!-- Previous Events Section -->
+            <div>
+                <section>
+                    <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Previous Events</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
+                        @forelse($previousEvents as $event)
+                        <div class="card rounded-lg overflow-hidden shadow opacity-75">
+                            <div class="foto aspect-video flex items-center justify-center text-white">
+                                @if($event->image)
+                                <img src="{{ asset('storage/' . $event->image) }}"
+                                    alt="{{ $event->title }}"
+                                    class="w-full h-full object-cover">
+                                @else
+                                <span class="text-lg">{{ $event->title }}</span>
+                                @endif
+                            </div>
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
+                                <p class="text-gray-600 mb-4">{{ $event->description }}</p>
+                                <p class="text-sm text-gray-500">
+                                    {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
+                                </p>
+                                <p class="text-sm text-gray-500">{{ $event->location }}</p>
+
+
+                                <!-- cek apakah dia admin atau bukan -->
                                 <div class="mt-4">
+                                    @if(auth()->user()->isAdmin())
                                     <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
                                     <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="delete rounded">Delete Event</button>
                                     </form>
+                                    @endif
                                 </div>
-                                @endif
+                                <!-- sampe sini -->
                             </div>
                         </div>
-                    </div>
-                    @empty
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600">No available events at the moment.</p>
-                    </div>
-                    @endforelse
-                </div>
-            </section>
-
-            <!-- Previous Events Section -->
-            <section>
-                <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Previous Events</h2>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
-                    @forelse($previousEvents as $event)
-                    <div class="card rounded-lg overflow-hidden shadow opacity-75">
-                        <div class="foto aspect-video flex items-center justify-center text-white">
-                            @if($event->image)
-                            <img src="{{ asset('storage/' . $event->image) }}"
-                                alt="{{ $event->title }}"
-                                class="w-full h-full object-cover">
-                            @else
-                            <span class="text-lg">{{ $event->title }}</span>
-                            @endif
+                        @empty
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-600">No previous events to show.</p>
                         </div>
-                        <div class="p-6">
-                            <h3 class="text-xl font-bold mb-2 text-gray-900">{{ $event->title }}</h3>
-                            <p class="text-gray-600 mb-4">{{ $event->description }}</p>
-                            <p class="text-sm text-gray-500">
-                                {{ \Carbon\Carbon::parse($event->date)->format('F j, Y - g:i A') }}
-                            </p>
-                            <p class="text-sm text-gray-500">{{ $event->location }}</p>
-
-
-                            <!-- cek apakah dia admin atau bukan -->
-                            <div class="mt-4">
-                                @if(auth()->user()->isAdmin())
-                                <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
-                                <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="delete rounded">Delete Event</button>
-                                </form>
-                                @endif
-                            </div>
-                            <!-- sampe sini -->
-                        </div>
+                        @endforelse
                     </div>
-                    @empty
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600">No previous events to show.</p>
-                    </div>
-                    @endforelse
+                </section>
+                <div>
+                    {{ $previousEvents->links('vendor.pagination.bootstrap-4') }}
                 </div>
-            </section>
+            </div>
         </div>
     </main>
 

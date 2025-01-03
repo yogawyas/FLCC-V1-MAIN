@@ -16,8 +16,11 @@ class MinistryController extends Controller
 // Menampilkan daftar ministry
 public function index()
 {
-    $ministries = Ministry::all();  // Mengambil semua data ministry dari database
-    return view('ministry.index', compact('ministries'));  // Mengirim data ministry ke view admin
+    // $ministries = Ministry::all();  // Mengambil semua data ministry dari database
+    // return view('ministry.index', compact('ministries'));  // Mengirim data ministry ke view admin
+
+    $ministries = Ministry::paginate(6);
+    return view('ministry.index', compact('ministries'));
 }
 
 // Menampilkan form untuk membuat ministry baru

@@ -9,13 +9,21 @@ use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-        public function index()
-        {
-            $events = Event::latest()->paginate(10);
-            $availableEvents = Event::where('status', 'open')->latest()->get();
-            $previousEvents = Event::where('status', 'closed')->latest()->get();
-            return view('events.index', compact('availableEvents', 'previousEvents'));
-        }
+    public function index()
+    {
+        $events = Event::latest()->paginate(10);
+        // $availableEvents = Event::where('status', 'open')->latest()->get();
+        // $previousEvents = Event::where('status', 'closed')->latest()->get();
+        $availableEvents = Event::where('status', 'open')
+            ->orderBy('date')
+            ->paginate(6);
+
+        $previousEvents = Event::where('status', 'closed')
+            ->orderBy('date', 'desc')
+            ->paginate(3);
+            
+        return view('events.index', compact('availableEvents', 'previousEvents'));
+    }
 
     public function create()
     {
@@ -79,7 +87,7 @@ class EventController extends Controller
         if ($event->image) {
             Storage::disk('public')->delete($event->image);
         }
-        
+
         $event->delete();
 
         return redirect()->route('events')
