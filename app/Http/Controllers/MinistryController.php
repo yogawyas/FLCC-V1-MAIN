@@ -117,7 +117,7 @@ public function users(ministry $ministry)
     // Validasi input
     
     $data = auth('web')->user();
-    if(!$data) return redirect()->back();
+    if(!$data) return redirect()->route('login');
     
     $user = $data->id;
     $datas = [
