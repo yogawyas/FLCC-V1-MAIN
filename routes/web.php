@@ -2,6 +2,7 @@
 
 // use App\Http\Controllers\EventController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\AdminNewsController;
 use App\Http\Controllers\MinistryController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\MoreaboutusController;
@@ -17,7 +18,7 @@ use App\Models\Ministry;
 use App\Models\News;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\AdminNewsController;
+
 
 // Autentikasi default Laravel
 require __DIR__.'/auth.php';
@@ -58,13 +59,19 @@ Route::delete('/events/{event}', [EventController::class, 'destroy'])->name('eve
 Route::get('/ministry', [MinistryController::class, 'index'])->name('ministry');
 Route::get('/news', [NewsController::class, 'index'])->name('news');
 
+// Public news route
+Route::get('/news', [NewsController::class, 'index'])->name('news');
+
+// Admin news routes
+Route::get('/admin/news', [AdminNewsController::class, 'index'])->name('admin.news.index');
+Route::get('/admin/news/create', [AdminNewsController::class, 'create'])->name('admin.news.create');
+Route::post('/admin/news', [AdminNewsController::class, 'store'])->name('admin.news.store');
+Route::get('/admin/news/{news}/edit', [AdminNewsController::class, 'edit'])->name('admin.news.edit');
+Route::put('/admin/news/{news}', [AdminNewsController::class, 'update'])->name('admin.news.update');
+Route::delete('/admin/news/{news}', [AdminNewsController::class, 'destroy'])->name('admin.news.destroy');
 
 //route discover more about us
 Route::get('/about', [MoreaboutusController::class, 'index'])->name('about');
-
-
-
-
 
 //ministry
 Route::post('/ministry/{ministry}/join', [MinistryController::class, 'join'])->name('ministry.join');
