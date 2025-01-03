@@ -59,8 +59,8 @@
                         </form>
                     </div>
                     @else
-                    <button class="regis"><a href="{{ route('register') }}" class="text-sm">Register</a></button>
-                    <button class="login ml-4"><a href="{{ route('login') }}" class="text-sm">Login</a></button>
+                    <a href="{{ route('register') }}" class="regis">Register</a>
+                    <a href="{{ route('login') }}" class="login ml-4">Login</a>
                     @endauth
                 </div>
             </div>

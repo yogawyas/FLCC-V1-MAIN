@@ -14,14 +14,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
 
         // Add this line to call the MinistrySeeder
         $this->call([
-            MinistrySeeder::class
+            MinistrySeeder::class,
+            AdminSeeder::class,
+            EventSeeder::class,
+            NewsSeeder::class
         ]);
     }
 }

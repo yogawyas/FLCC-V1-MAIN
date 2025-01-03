@@ -108,13 +108,8 @@
             </div>
 
             <div class="mb-3">
-                <label for="min_slots" class="form-label" style="color: white;">Minimum Slots</label>
-                <input type="number" class="form-control" id="min_slots" name="min_slots" min="1" required style="width: 100%; padding: 10px; font-size: 16px;">
-            </div>
-
-            <div class="mb-3">
-                <label for="max_slots" class="form-label" style="color: white;">Maximum Slots</label>
-                <input type="number" class="form-control" id="max_slots" name="max_slots" min="1" required style="width: 100%; padding: 10px; font-size: 16px;">
+                <label for="slots" class="form-label" style="color: white;">Slots</label>
+                <input type="number" class="form-control" id="slots" name="total_slots" min="1" required style="width: 100%; padding: 10px; font-size: 16px;">
             </div>
 
             <div class="card p-3 mt-4 shadow bg-dark">

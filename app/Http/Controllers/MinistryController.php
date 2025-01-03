@@ -16,8 +16,11 @@ class MinistryController extends Controller
 // Menampilkan daftar ministry
 public function index()
 {
-    $ministries = Ministry::all();  // Mengambil semua data ministry dari database
-    return view('ministry.index', compact('ministries'));  // Mengirim data ministry ke view admin
+    // $ministries = Ministry::all();  // Mengambil semua data ministry dari database
+    // return view('ministry.index', compact('ministries'));  // Mengirim data ministry ke view admin
+
+    $ministries = Ministry::paginate(6);
+    return view('ministry.index', compact('ministries'));
 }
 
 // Menampilkan form untuk membuat ministry baru
@@ -36,7 +39,7 @@ public function store(Request $request)
         'image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         'meeting_time' => 'required|date',
         'location' => 'required|string|max:255',
-        'status' => 'required|string|in:upcoming,ongoing,completed',
+        'status' => 'required|string|in:open,closed',
         'total_slots' => 'required|integer|min:1',
     ]);
 
@@ -45,17 +48,17 @@ public function store(Request $request)
 
     // Menyimpan data ministry baru ke database
     Ministry::create([
-        'name' => $request->Name ,
+        'name' => $request->name ,
         'description' => $request->description,
         'image' => $imagePath,
-        'meeting_time' => $request->date,
+        'meeting_time' => $request->meeting_time,
         'location' => $request->location,
         'status' => $request->status,
-        'total_slots' => $request->max_participants,
+        'total_slots' => $request->total_slots,
     ]);
 
     // Redirect ke halaman daftar ministry dengan pesan sukses
-    return redirect()->route('ministry.index')->with('success', 'Ministry created successfully!');
+    return redirect()->route('ministry')->with('success', 'Ministry created successfully!');
 }
 
 // Menampilkan form untuk mengedit ministry
