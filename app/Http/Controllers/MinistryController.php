@@ -109,19 +109,28 @@ public function users(ministry $ministry)
     }
 
 
-    public function join(Ministry $ministry)
+    public function join(Ministry $ministry, Request $request)
 {
     // Validasi input
-    $validated = $request->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255|unique:users,email',
-    ]);
+    // $validated = $request->validate([
+    //     'name' => 'required|string|max:255',
+    //     'email' => 'required|email|max:255|unique:users,email',
+    // ]);
 
-    // Simpan data ke dalam tabel 'ministry_users' (atau sesuai nama tabel Anda)
-    $ministry->users()->create([
-        'name' => $validated['name'],
-        'email' => $validated['email'],
-    ]);
+    // // Simpan data ke dalam tabel 'ministry_users' (atau sesuai nama tabel Anda)
+    // $ministry->users()->create([
+    //     'name' => $validated['name'],
+    //     'email' => $validated['email'],
+    // ]);
+    $data = auth('web')->user();
+    if(!$data) return redirect()->back();
+    
+    $user = $data->id;
+    $datas = [
+        'ministry_id' => $ministry->id,
+        'user_id' => $user
+    ];
+    $ministry->users()->attach($user);
 
     // Redirect atau kembalikan respon
     return redirect()->back()->with('success', 'Berhasil mendaftar ke ministry!');

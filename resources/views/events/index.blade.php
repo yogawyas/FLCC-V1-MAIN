@@ -92,7 +92,7 @@
                                     </p>
                                     <p class="text-sm text-gray-500">{{ $event->location }}</p>
                                 </div>
-                                @if(auth()->user()->isAdmin())
+                                @if(auth()->user() && auth()->user()->isAdmin())
                                 <div class="mt-4">
                                     <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
                                     <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
@@ -139,7 +139,7 @@
 
                             <!-- cek apakah dia admin atau bukan -->
                             <div class="mt-4">
-                                @if(auth()->user()->isAdmin())
+                                @if(auth()->user() && auth()->user()->isAdmin())
                                 <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
                                 <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
                                     @csrf
