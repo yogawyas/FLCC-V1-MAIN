@@ -69,7 +69,15 @@
         <div class="max-w-7xl mx-auto p-4 sm:px-6 lg:px-8">
             <!-- Available Events Section -->
             <section class="mb-12">
-                <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Available Events</h2>
+                <div class="flex justify-between">
+                    <h2 class="text-3xl font-bold mb-8" data-aos="fade-up" data-aos-duration="1500">Available Events</h2>
+                    @if (Auth::check() && Str::endsWith(Auth::user()->email, '@admin.com'))
+                    <a ref="{{ route('ministry.create') }}" class="Btn" data-aos="fade-up" data-aos-duration="1500">
+                        <div class="sign">+</div>
+                        <div class="text">Create</div>
+                    </a>
+                    @endif
+                </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" data-aos="fade-up" data-aos-duration="1500">
                     @forelse($availableEvents as $event)
                     <div class="card rounded-lg overflow-hidden shadow">
@@ -111,6 +119,9 @@
                     </div>
                     @endforelse
                 </div>
+                <div>
+                    {{ $availableEvents->links('vendor.pagination.bootstrap-4') }}
+                </div>
             </section>
 
             <!-- Previous Events Section -->
@@ -138,28 +149,31 @@
                                 <p class="text-sm text-gray-500">{{ $event->location }}</p>
 
 
-                            <!-- cek apakah dia admin atau bukan -->
-                            <div class="mt-4">
-                                @if(auth()->user()->isAdmin())
-                                <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
-                                <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="delete rounded">Delete Event</button>
-                                </form>
-                                @endif
+                                <!-- cek apakah dia admin atau bukan -->
+                                <div class="mt-4">
+                                    @if(auth()->user()->isAdmin())
+                                    <a href="{{ route('events.edit', $event->id) }}" class="edit rounded">Edit Event</a>
+                                    <form action="{{ route('events.destroy', $event->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="delete rounded">Delete Event</button>
+                                    </form>
+                                    @endif
+                                </div>
+                                <!-- sampe sini -->
                             </div>
-                            <!-- sampe sini -->
                         </div>
+                        @empty
+                        <div class="col-span-full text-center py-8">
+                            <p class="text-gray-600">No previous events to show.</p>
+                        </div>
+                        @endforelse
                     </div>
-                    @empty
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600">No previous events to show.</p>
+                    <div>
+                        {{ $previousEvents->links('vendor.pagination.bootstrap-4') }}
                     </div>
-                    @endforelse
-                </div>
-            </section>
-        </div>
+                </section>
+            </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
