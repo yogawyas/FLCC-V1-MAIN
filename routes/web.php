@@ -31,7 +31,7 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', function () {
     Auth::guard('web')->logout();
-    return redirect('welcome');
+    return redirect('/');
 })->name('logout');
 
 // if(!auth('web')->user() || !auth('web')->user()->isAdmin())
@@ -95,47 +95,3 @@ Route::delete('/ministries/{ministry}/users/{user}', [MinistryController::class,
 //route create ministry
 Route::get('/ministry/create', [MinistryController::class, 'create'])->name('ministry.create');
 Route::post('/ministry/store', [MinistryController::class, 'store'])->name('ministry.store');
-
-
-
-// Admin Dashboard
-/*
-Route::middleware(['auth:admin'])->prefix('admin')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        if (auth('admin')->user()->is_admin) {
-            $totalUsers = User::count();
-            $totalEvents = Event::count();
-            $totalMinistries = Ministry::count();
-            $totalNews = News::count();
-
-            $stats = [
-                'total_users' => $totalUsers,
-                'total_events' => $totalEvents,
-                'total_ministries' => $totalMinistries,
-                'total_news' => $totalNews,
-            ];
-
-            return view('admin.dashboard', compact('stats'));
-        }
-
-        abort(403, 'This action is unauthorized.');
-    })->name('admin.dashboard');
-
-    // Rute logout untuk admin
-    Route::post('/logout', function () {
-        auth('admin')->logout();
-        return redirect('/admin/login');
-    })->name('admin.logout');
-
-    //route more about us
-    Route::get('/about', function () {
-        return view('about'); // Ganti 'about' dengan view yang sesuai
-    })->name('about');
-    
-});
-
-// Rute login admin
-Route::get('/admin/login', [AuthenticatedSessionController::class, 'create'])->name('admin.login');
-Route::post('/admin/login', [AuthenticatedSessionController::class, 'store']);
-
-*/
