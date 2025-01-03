@@ -38,9 +38,9 @@
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
-                        <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('about*') ? 'text-violet-400' : 'text-gray-500' }}">
+                        <!-- <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('about*') ? 'text-violet-400' : 'text-gray-500' }}">
                             About Us
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
         </div>
     </nav>
     <!-- Main Content -->
-    <main class="ministry">
+    <main class="ministry mt-20 mb-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-5" data-aos="fade-up" data-aos-duration="1500">
                 <h1 class="text-4xl font-bold text-gray-900 mb-4">
@@ -86,7 +86,7 @@
                 @endif
             </div>
 
-            <div class="container mx-auto">
+            
                 <!-- Ministry Grid -->
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     @forelse($ministries as $ministry)
@@ -127,9 +127,28 @@
                                 <h3 class="text-xl font-bold mb-3 text-gray-900">{{ $ministry->name }}</h3>
                                 <p class="text-gray-600-300 mb-6 line-clamp-2">{{ $ministry->description }}</p>
                             </div>
+
+                            <!-- Quick Info -->
+                            <div class="space-y-2 mb-6 mt-6 ml-6">
+                                    @if($ministry->meeting_time)
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                        </svg>
+                                        {{ $ministry->meeting_time }}
+                                    </div>
+                                    @endif
+
+                                    <div class="flex items-center text-sm text-gray-500">
+                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                        </svg>
+                                        <span>{{ $ministry->users->count() }}/{{ $ministry->total_slots }} Slots</span>
+                                    </div>
+                                </div>
                             <!-- Action Buttons -->
                             <div class="flex gap-2">
-                                <button onclick="openModal('modal-{{ $ministry->id }}')"
+                                <!-- <button onclick="openModal('modal-{{ $ministry->id }}')"
                                     class="more flex-1 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
                                     See More
                                 </button>
@@ -156,33 +175,16 @@
                                 
 
                                     @if(auth()->user() && auth('web')->user()->isAdmin())
-                                    <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
+                                    <!-- Tombol Edit yang mengarahkan ke halaman edit ministry
                                     <a href="{{ route('ministries.edit', $ministry->id) }}"
                                         class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
                                         Edit
                                     </a>
-                                    @endif
+                                    @endif -->
 
 
-                                <!-- Quick Info -->
-                                <div class="space-y-2 mb-6">
-                                    @if($ministry->meeting_time)
-                                    <div class="flex items-center text-sm text-gray-500">
-                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        {{ $ministry->meeting_time }}
-                                    </div>
-                                    @endif
-
-                                    <div class="flex items-center text-sm text-gray-500">
-                                        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                                        </svg>
-                                        <span>{{ $ministry->users->count() }}/{{ $ministry->total_slots }} Slots</span>
-                                    </div>
-                                </div>
-                                <!-- Action Buttons -->
+                                
+                                <!-- Action Buttons
                                 <div class="flex gap-2">
                                     <button onclick="openModal('modal-{{ $ministry->id }}')"
                                         class="more flex-1 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
@@ -216,7 +218,7 @@
                                         </a>
                                         @endif
 
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -316,7 +318,7 @@
                     </div>
                     @endforelse
                 </div>
-            </div>
+            
 
             <!-- Pagination -->
             <div>

@@ -46,8 +46,8 @@
 }
 
 
-#news {
-    background-color: var(--background-color2);
+.news {
+    background-color: var(--background-color3);
 }
 
 /* .login {

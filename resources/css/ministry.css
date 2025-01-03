@@ -306,9 +306,9 @@ a.login, a.regis {
     transform: translate(2px, 2px);
 }
 
-.container{
+/* .container{
     background-color: var(--background-color2);
-}
+} */
 
 h1{
     color: var(--primary-color);
@@ -387,3 +387,4 @@ label{
 .footer h4{
     color: var(--text-color);
 }
+
