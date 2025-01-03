@@ -7,9 +7,13 @@ use App\Models\News;
 
 class WelcomeController extends Controller
 {
+    // app/Http/Controllers/WelcomeController.php
     public function index()
     {
-        $news = News::where('is_featured', TRUE)->get();
-        return view('welcome', compact(['news'])); // Mengarahkan ke welcome.blade.php
+        $news = News::latest()
+            ->take(5)
+            ->get();
+
+        return view('welcome', compact('news'));
     }
 }

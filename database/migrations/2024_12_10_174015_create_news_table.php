@@ -1,12 +1,13 @@
-// database/migrations/xxxx_xx_xx_create_news_table.php
+// database/migrations/2024_01_03_000000_create_news_table.php
 <?php
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNewsTable extends Migration
+return new class extends Migration
 {
+    // database/migrations/[timestamp]_create_news_table.php
     public function up()
     {
         Schema::create('news', function (Blueprint $table) {
@@ -15,6 +16,7 @@ class CreateNewsTable extends Migration
             $table->text('content');
             $table->string('image_url')->nullable();
             $table->boolean('is_featured')->default(false);
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -23,4 +25,4 @@ class CreateNewsTable extends Migration
     {
         Schema::dropIfExists('news');
     }
-}
+};

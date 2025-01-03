@@ -82,6 +82,7 @@
                     <br>
                     <h1>News</h1>
                     <p>Create, Edit, Delete</p>
+                    <a href="{{ route('admin.news.create') }}" class="bg-red-500 text-Blue px-4 py-2 rounded hover:bg-red-600"> Add News</a>
                 </div>
             </div>
         </div>
