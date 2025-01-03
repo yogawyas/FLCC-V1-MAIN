@@ -104,7 +104,7 @@
                     <a href="{{ route('news') }}" class="news">View All News ></a>
                 </div>
 
-                <div class="relative">
+                <div class="relative" data-aos="fade-up" data-aos-duration="1500">
                     <div class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide">
                         @forelse($news ?? [] as $newsItem)
                         <div class="bg-violet-400 rounded-lg p-8 min-w-[300px] aspect-video flex-shrink-0">
