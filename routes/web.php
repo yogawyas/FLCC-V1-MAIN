@@ -31,7 +31,7 @@ Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('l
 Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 Route::post('/logout', function () {
     Auth::guard('web')->logout();
-    return redirect('/login');
+    return redirect('welcome');
 })->name('logout');
 
 // if(!auth('web')->user() || !auth('web')->user()->isAdmin())

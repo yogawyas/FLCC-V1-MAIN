@@ -86,9 +86,10 @@
                     <!-- Event list -->
                     <div class="mt-6">
                         <ul>
-                            <li><a href="{{ route('events') }}">Upcoming Event 1</a></li>
-                            <li><a href="{{ route('events') }}">Upcoming Event 2</a></li>
-                            <li><a href="{{ route('events') }}">Upcoming Event 3</a></li>
+                            @forelse($events as $event)
+                            <li><a href="{{ route('events') }}">{{ $event->title }}</a></li>
+                            @empty
+                            @endforelse
                         </ul>
                     </div>
                 </div>
@@ -117,9 +118,10 @@
                     </p>
                     <div class="mt-6">
                         <ul>
-                            <li><a href="{{ route('news') }}">News Article 1</a></li>
-                            <li><a href="{{ route('news') }}">News Article 2</a></li>
-                            <li><a href="{{ route('news') }}">News Article 3</a></li>
+                            @forelse($news as $new)
+                            <li><a href="{{ route('news') }}">{{ $new->title }}</a></li>
+                            @empty
+                            @endforelse
                         </ul>
                     </div>
                 </div>
