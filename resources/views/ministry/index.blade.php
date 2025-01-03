@@ -221,7 +221,7 @@
                                 </div> -->
                             </div>
                         </div>
-                    </div>
+                    
 
                     <!-- Ministry Detail Modal -->
                     <div id="modal-{{ $ministry->id }}" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto">
