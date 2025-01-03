@@ -34,7 +34,6 @@ class AdminNewsController extends Controller
             'title' => $validated['title'],
             'content' => $validated['content'],
             'is_featured' => $request->has('is_featured'),
-            'user_id' => Auth::user()->id
         ];
 
         if ($request->hasFile('image')) {
@@ -83,6 +82,6 @@ class AdminNewsController extends Controller
             Storage::disk('public')->delete($news->image);
         }
         $news->delete();
-        return redirect()->route('news.index')->with('success', 'News deleted successfully');
+        return redirect()->route('news')->with('success', 'News deleted successfully');
     }
 }
