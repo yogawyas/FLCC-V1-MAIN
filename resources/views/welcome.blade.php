@@ -35,9 +35,13 @@
                         <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Ministry
                         </a>
+<<<<<<< HEAD
+                        
+=======
                         <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('about*') ? 'text-violet-400' : 'text-gray-500' }}">
                             About Us
                         </a>
+>>>>>>> e11e9223d1bd1f35a8a8b9f6e24b48840ad7b13d
                     </div>
 
                 </div>

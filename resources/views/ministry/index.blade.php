@@ -104,6 +104,7 @@
                             @endif
                         </div>
 
+
                         <!-- Ministry Image/Placeholder -->
                         <div data-aos="fade-up" data-aos-duration="1500">
                             <div class="aspect-video relative overflow-hidden bg-gray-100">
@@ -151,6 +152,9 @@
                                         {{ $ministry->status === 'closed' ? 'Closed' : 'Full' }}
                                     </button>
                                 @endif
+
+                                
+
                                     @if(auth()->user() && auth('web')->user()->isAdmin())
                                     <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
                                     <a href="{{ route('ministries.edit', $ministry->id) }}"
@@ -158,6 +162,7 @@
                                         Edit
                                     </a>
                                     @endif
+
 
                                 <!-- Quick Info -->
                                 <div class="space-y-2 mb-6">
