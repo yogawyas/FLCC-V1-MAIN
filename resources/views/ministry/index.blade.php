@@ -152,7 +152,7 @@
                                     class="more flex-1 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
                                     See More
                                 </button>
-                                @if($ministry->users->contains(auth()->user()->id))
+                                @if(auth()->user() && $ministry->users->contains(auth()->user()->id))
                                 <button disabled
                                     class="close flex-1 px-4 py-2 rounded-lg cursor-not-allowed text-sm font-medium">
                                     Joined
@@ -204,7 +204,7 @@
                                             {{ $ministry->status === 'closed' ? 'Closed' : 'Full' }}
                                         </button>
                                         @endif
-                                        @if(auth('web')->user()->isAdmin())
+                                        @if(auth()->user() && auth('web')->user()->isAdmin())
                                         <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
                                         <a href="{{ route('ministries.edit', $ministry->id) }}"
                                             class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
