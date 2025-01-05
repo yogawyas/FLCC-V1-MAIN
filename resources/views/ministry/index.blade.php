@@ -124,6 +124,7 @@
                                 @endif
                             </div>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                             <!-- Ministry Content -->
                             <div class="bg-white p-6">
                                 <h3 class="text-xl font-bold mb-3 text-gray-900">{{ $ministry->name }}</h3>
@@ -212,10 +213,28 @@
                                             class="more flex-1 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
                                             See More
                                         </button>
+=======
+
+                            <<<<<<< HEAD
+                                <!-- Ministry Content -->
+                                <div class="bg-white p-6">
+                                    <h3 class="text-xl font-bold mb-3 text-gray-900">{{ $ministry->name }}</h3>
+                                    <p class="text-gray-600-300 mb-6 line-clamp-2">{{ $ministry->description }}</p>
+                                    =======
+                                    <!-- Action Buttons -->
+                                    <div class="flex gap-2">
+                                        <button onclick="openModal('modal-{{ $ministry->id }}')"
+                                            class="more flex-1 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
+                                            See More
+                                        </button>
+>>>>>>> Stashed changes
                                         @if($ministry->users->contains(auth()->user()->id))
                                             <button disabled
                                                 class="close flex-1 px-4 py-2 rounded-lg cursor-not-allowed text-sm font-medium">
                                                 Joined
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                                             </button>
                                         @elseif($ministry->status === 'open' && $ministry->users->count() < $ministry->total_slots)
@@ -234,18 +253,24 @@
                                         @endif
                                         @if(auth()->user() && auth('web')->user()->isAdmin())
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                         <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
                                         <a href="{{ route('ministries.edit', $ministry->id) }}"
                                             class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
                                             Edit
                                         </a>
 =======
+=======
+>>>>>>> Stashed changes
                                             <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
                                             <a href="{{ route('ministries.edit', $ministry->id) }}"
                                                 class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
                                                 Edit
                                             </a>
                                             >>>>>>> 444f7d884c2d4a6fce19180a27f6b2472ccc4b2d
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
                                             <!-- Quick Info -->
@@ -259,6 +284,7 @@
                                                 </div>
                                                 @endif
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                                 </div> -->
                             </div>
@@ -327,6 +353,69 @@
                                             </svg>
                                         </button>
 
+=======
+                                                <div class="flex items-center text-sm text-gray-500">
+                                                    <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                                    </svg>
+                                                    <span>{{ $ministry->users->count() }}/{{ $ministry->total_slots }} Slots</span>
+                                                </div>
+                                            </div>
+
+                                            <!-- Action Buttons -->
+                                            <div class="flex gap-2">
+                                                <button onclick="openModal('modal-{{ $ministry->id }}')"
+                                                    class="more flex-1 px-4 py-2 rounded-lg transition-colors text-sm font-medium">
+                                                    See More
+                                                </button>
+                                                @if($ministry->status === 'open' && $ministry->users->count() < $ministry->total_slots)
+                                                    <form action="{{ route('ministry.join', $ministry) }}" method="POST" class="flex-1">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class="join w-full text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium">
+                                                            Join Now
+                                                        </button>
+                                                    </form>
+                                                    @else
+                                                        <button disabled
+                                                            class="close flex-1 px-4 py-2 rounded-lg cursor-not-allowed text-sm font-medium">
+                                                            {{ $ministry->status === 'closed' ? 'Closed' : 'Full' }}
+                                                        </button>
+                                                    @endif
+                                                    @if(auth('web')->user()->isAdmin())
+                                                        <!-- Tombol Edit yang mengarahkan ke halaman edit ministry -->
+                                                        <a href="{{ route('ministries.edit', $ministry->id) }}"
+                                                            class="flex-1 bg-yellow-400 text-black px-4 py-2 rounded-lg">
+                                                            Edit
+                                                        </a>
+
+                                                        <!-- Tombol Manage Users yang mengarahkan ke halaman manage users ministry -->
+                                                        <a href="{{ route('ministries.users', $ministry->id) }}"
+                                                            class="flex-1 bg-red-400 text-white px-4 py-2 rounded-lg">
+                                                            Manage Users
+                                                        </a>
+                                                    @endif
+
+                                            </div>
+                                    </div>
+                                </div>
+                        </div>
+
+                        <!-- Ministry Detail Modal -->
+                        <div id="modal-{{ $ministry->id }}" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 overflow-auto">
+                            <div class="min-h-screen px-4 text-center">
+                                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                                    <!-- Modal Content -->
+                                    <div class="relative">
+                                        <!-- Close Button -->
+                                        <button onclick="closeModal('modal-{{ $ministry->id }}')"
+                                            class="absolute top-4 right-4 z-20 bg-white rounded-full p-1 shadow-lg hover:bg-gray-100">
+                                            <svg class="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                            </svg>
+                                        </button>
+
+>>>>>>> Stashed changes
                                         <!-- Ministry Image -->
                                         <div class="aspect-video relative overflow-hidden bg-gray-100">
                                             @if($ministry->image)
@@ -408,6 +497,7 @@
                         </div>
                         @endforelse
                     </div>
+<<<<<<< Updated upstream
                 </div>
 
                 <!-- Pagination -->
@@ -423,6 +513,15 @@
             </div>
         </div>
 =======
+            </div>
+>>>>>>> Stashed changes
+=======
+                </div>
+
+                <!-- Pagination -->
+                <div>
+                    {{ $ministries->links('vendor.pagination.bootstrap-4') }}
+                </div>
             </div>
 >>>>>>> Stashed changes
     </main>
