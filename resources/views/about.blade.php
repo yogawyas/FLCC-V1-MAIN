@@ -99,7 +99,7 @@
     <div class="about">
         <div class="aus max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="us flex flex-col md:flex-row mb-12 space-y-6 md:space-y-0">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-0 flex-auto" data-aos="fade-down" data-aos-duration="1500"> Our Story</h1>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-0 flex-auto" data-aos="fade-right" data-aos-duration="1500"> Our Story</h1>
                 <div class="text-base lg:text-lg leading-relaxed md:w-2/3" data-aos="fade-up" data-aos-duration="1500">
                     <p class="mb-3">
                         Atas kasih karunia Tuhan Yesus, Gereja Bethel Indonesia (GBI) WTC berdiri pada tahun

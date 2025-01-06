@@ -657,6 +657,7 @@ section h2 {
     background-color: var(--primary-color);
     padding: 7.5px 20px;
     transition: all 0.3s ease-in-out;
+    font-family: var(--font2);
 }
 
 .edit:hover {
@@ -667,6 +668,7 @@ section h2 {
     background-color: var(--accent-color);
     padding: 5px 10px;
     transition: all 0.3s ease-in-out;
+    font-family: var(--font2);
 }
 
 .delete:hover {
@@ -681,10 +683,15 @@ section h2 {
 
 .footer h4 {
     color: var(--secondary-color);
+    font-family: var(--font2);
 }
 
 .footer-flcc {
     color: var(--text-color);
+
+    a{
+        font-family: var(--font3);
+    }
 }
 
 .footer-flcc a:hover {

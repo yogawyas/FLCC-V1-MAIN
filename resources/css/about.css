@@ -309,6 +309,10 @@ a.regis {
     color: var(--text-color);
 }
 
+.footer h4{
+    font-family: var(--font2);
+}
+
 .pastor {
     h2 {
         color: var(--text-color);
