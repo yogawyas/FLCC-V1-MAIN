@@ -1,15 +1,89 @@
 :root {
     --primary-color: #ffd700;
-    --secondary-color: #ff5733;
+    --secondary-color: #ffffff5c;
     --accent-color: #ffc107;
     --background-color2: #272824;
     --background-color1: black;
     --background-color3: #191919;
-    --border-color: #272824;
     --text-color: #fcfcfc;
-    --button-hover-color: #ff4500;
-    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(255, 255, 255, 0.3);
     --card-background-color: #2f2f2f;
+    --font1: "Playfair Display", serif;
+    --font2: "Montserrat", sans-serif;
+    --font3: "Libre Baskerville", serif;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+html {
+    background-color: var(--background-color2);
+}
+
+.header-nav {
+    background-color: var(--background-color1);
+    border-bottom: var(--border-color);
+}
+
+.header a:nth-child(3) {
+    color: var(--primary-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.header a:nth-child(1),
+.header a:nth-child(2),
+.header a:nth-child(4) {
+    color: var(--text-color);
+    transition: all 0.2s ease-in-out;
+}
+
+html{
+    background-color: var(--background-color2);
+}
+
+.header a:hover {
+    border-bottom: 2px solid white;
+}
+
+.flcc {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    background: linear-gradient(90deg, #ffd700, #ffc300, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 150% 150%;
+    background-position: left bottom;
+    transition: all 5s ease-in-out;
+}
+
+.flcc:hover {
+    background: linear-gradient(90deg, #ffd700, #ffd700, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: right top;
+    background-size: 200% 200%;
+}
+
+.nav-des {
+    font-family: var(--font2);
 }
 
 html{
@@ -306,9 +380,70 @@ a.login, a.regis {
     transform: translate(2px, 2px);
 }
 
-/* .container{
+.container{
     background-color: var(--background-color2);
-} */
+    width: 70%;
+    margin: 0 auto;
+
+    h1{
+        font-family: var(--font1);
+        color: var(--text-color);
+    }
+
+    label{
+        font-family: var(--font2);
+    }
+
+    #meeting_time{
+        color: var(--background-color2);
+    }
+
+    #image{
+        color: var(--accent-color);
+        font-family: var(--font2);
+    }
+
+    button{
+        background-color: var(--primary-color);
+        color: var(--background-color2);
+        border-radius: 0.25rem;
+        font-family: var(--font2);
+    }
+
+    button:hover{
+        background-color: var(--accent-color);
+        padding: 0.5em 1em;
+        display: inline-block;
+        transition: 0.3s, transform 0.2s;
+    }
+
+    .button:active {
+        transform: translate(0.05em, 0.05em);
+        box-shadow: 0.05em 0.05em rgba(0, 0, 0, 0);
+    }
+
+    .card a{
+        background-color: var(--primary-color);
+        color: var(--background-color2);
+        border-radius: 0.25rem;
+        padding: 0.5em 1em;
+        display: inline-block;
+        font-family: var(--font2);
+    }
+
+    .card a:hover{
+        background-color: rgba(0, 0, 0, 0);
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        transition: 0.3s, transform 0.2s;
+    }
+
+    .card a:active {
+        transform: translate(0.05em, 0.05em);
+        box-shadow: 0.05em 0.05em rgba(0, 0, 0, 0);
+        color: var(--accent-color);
+    }
+}
 
 h1{
     color: var(--primary-color);

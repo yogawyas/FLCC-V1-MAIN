@@ -3,13 +3,13 @@
     <div class="news max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="mb-12">
             <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Manage News</h2>
-                <a href="{{ route('admin.news.create') }}" class="bg-violet-500 hover:bg-violet-600 text-white font-bold py-2 px-4 rounded">
+                <h2 class="text-3xl font-bold">Manage News</h2>
+                <a href="{{ route('admin.news.create') }}" class="create font-bold py-2 px-4 rounded">
                     Create News
                 </a>
             </div>
 
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+            <div class="bg-white rounded-lg shadow overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50 dark:bg-gray-700">
@@ -33,7 +33,7 @@
                                     {{ $item->created_at->format('Y-m-d') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <a href="{{ route('admin.news.edit', $item) }}" class="text-violet-600 hover:text-violet-900 dark:text-violet-400 dark:hover:text-violet-300 mr-3">Edit</a>
+                                    <a href="{{ route('admin.news.edit', $item) }}" class="edit mr-3">Edit</a>
                                     <form action="{{ route('admin.news.destroy', $item) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')

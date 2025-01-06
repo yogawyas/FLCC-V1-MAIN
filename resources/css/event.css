@@ -1,29 +1,211 @@
 :root {
     --primary-color: #ffd700;
-    --secondary-color: #ff5733;
+    --secondary-color: #ffffff5c;
     --accent-color: #ffc107;
     --background-color2: #272824;
     --background-color1: black;
     --background-color3: #191919;
-    --border-color: #272824;
     --text-color: #fcfcfc;
-    --button-hover-color: #ff4500;
-    --shadow-color: rgba(0, 0, 0, 0.3);
+    --shadow-color: rgba(255, 255, 255, 0.3);
     --card-background-color: #2f2f2f;
+    --font1: "Playfair Display", serif;
+    --font2: "Montserrat", sans-serif;
+    --font3: "Libre Baskerville", serif;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
 }
 
 html {
     background-color: var(--background-color2);
 }
 
+h2 {
+    font-family: var(--font1);
+}
+
+p {
+    font-family: var(--font3);
+}
+
+h3,
+span {
+    font-family: var(--font2);
+}
+
+span {
+    text-align: center;
+}
+
+@media (max-width: 639px) and (min-width: 560px) {
+    .card {
+        width: 250px;
+    }
+
+    .av-g {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+    }
+
+    .prev-g {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        justify-items: center;
+    }
+
+    .av {
+        h2 {
+            font-size: 20px;
+        }
+
+        .desc {
+            font-size: 14px;
+        }
+
+        .loc p {
+            font-size: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+        }
+
+        .tl {
+            font-size: 14px;
+        }
+    }
+
+    .prev {
+        h2 {
+            font-size: 20px;
+        }
+
+        .desc {
+            font-size: 14px;
+        }
+
+        .loc {
+            font-size: 10px;
+        }
+
+        h3 {
+            font-size: 18px;
+            margin-bottom: 0;
+        }
+
+        .tl {
+            font-size: 14px;
+        }
+    }
+
+    .delete {
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 375px) {
+    .sign {
+        font-size: 1em;
+    }
+
+    .text {
+        position: absolute;
+        right: -5%;
+        width: 0%;
+        opacity: 0;
+        color: var(--background-color2);
+        font-size: 0.825em;
+        font-weight: 500;
+        transition-duration: 0.3s;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .av-g {
+        justify-items: center;
+    }
+
+    .prev-g {
+        justify-items: center;
+    }
+
+    .av {
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 10px;
+            margin-bottom: 0;
+        }
+
+        .loc p {
+            font-size: 6px;
+        }
+
+        h3 {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .tl {
+            font-size: 12px;
+        }
+    }
+
+    .prev {
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .desc {
+            font-size: 10px;
+            margin-bottom: 0;
+        }
+
+        .loc {
+            font-size: 6px;
+        }
+
+        h3 {
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .tl {
+            font-size: 12px;
+        }
+    }
+
+    .delete {
+        margin-top: 10px;
+    }
+}
+
 .header-nav {
     background-color: var(--background-color1);
     border-bottom: var(--border-color);
-}
-
-.header a {
-    color: var(--text-color);
-    transition: all 0.2s ease-in-out;
 }
 
 .header a:nth-child(2) {
@@ -35,6 +217,7 @@ html {
 .header a:nth-child(3),
 .header a:nth-child(4) {
     color: var(--text-color);
+    transition: all 0.2s ease-in-out;
 }
 
 .header a:hover {
@@ -58,6 +241,152 @@ html {
     -webkit-text-fill-color: transparent;
     background-position: right top;
     background-size: 200% 200%;
+}
+
+.nav-des {
+    font-family: var(--font2);
+}
+
+a.login,
+a.regis {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    font-size: 0.875rem;
+}
+
+.login {
+    display: inline-block;
+    padding: 8px 0;
+    width: 100px;
+    border: 1px solid var(--background-color2);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-size: 19px;
+    cursor: pointer;
+    color: var(--primary-color);
+    z-index: 1;
+    background-color: transparent;
+}
+
+.login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: left 0.3s ease-in-out;
+}
+
+.login:hover {
+    color: var(--background-color1);
+}
+
+.login:hover::before {
+    left: 0;
+}
+
+.login:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}
+
+.regis {
+    color: var(--text-color);
+    padding: 8px 0;
+    width: 100px;
+    transition: all 0.3s ease-in-out;
+    font-size: 19px;
+    border: 1px solid var(--background-color2);
+    border-radius: 4px;
+}
+
+.regis:hover {
+    border-color: var(--text-color);
+}
+
+.regis:active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}
+
+.user {
+    color: var(--text-color);
+    cursor: text;
+}
+
+.logout {
+    color: var(--primary-color);
+}
+
+.logout:hover {
+    color: var(--secondary-color);
+}
+
+.logout:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em rgba(0, 0, 0, 0);
+}
+
+#mobile-menu {
+    font-family: var(--font2);
+}
+
+#mobile-menu a {
+    color: var(--text-color);
+}
+
+#mobile-menu a:hover {
+    color: var(--primary-color);
+}
+
+#mobile-menu .login:hover {
+    color: var(--background-color1);
+}
+
+.title {
+    h1 {
+        color: var(--text-color);
+    }
+}
+
+@media (max-width: 640px) and (min-width: 474px) {
+    .title {
+        h1 {
+            font-size: 1.875rem;
+        }
+    }
+}
+
+@media (max-width: 474px) and (min-width: 400px) {
+    .title {
+        h1 {
+            font-size: 1.563rem;
+        }
+    }
+}
+
+@media (max-width: 400px) and (min-width: 326px) {
+    .title {
+        h1 {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+@media (max-width: 326px) {
+    .title {
+        h1 {
+            font-size: 0.938rem;
+        }
+    }
 }
 
 .event {
@@ -250,6 +579,10 @@ a.regis {
     transition-duration: 0.3s;
 }
 
+.no{
+    color: var(--accent-color);
+}
+
 .Btn:hover {
     width: 125px;
     transition-duration: 0.3s;
@@ -274,6 +607,42 @@ a.regis {
 
 section h2 {
     color: var(--text-color);
+}
+
+.create{
+    width: 70%;
+    margin: 0 auto;
+
+    h1{
+        color: var(--text-color);
+        text-align: center;
+    }
+
+    label{
+        color: var(--text-color);
+    }
+
+    #image{
+        color: var(--accent-color);
+    }
+
+    button{
+        background-color: var(--primary-color);
+        color: var(--background-color2);
+    }
+
+    button:hover{
+        background-color: var(--accent-color);
+        border-radius: 0.25rem;
+        padding: 0.5em 1em;
+        display: inline-block;
+        transition: 0.3s, transform 0.2s;
+    }
+
+    .button:active {
+        transform: translate(0.05em, 0.05em);
+        box-shadow: 0.05em 0.05em rgba(0, 0, 0, 0);
+    }
 }
 
 .card {
@@ -310,26 +679,148 @@ section h2 {
     border-top: var(--border-color);
 }
 
-.footer h4, .footer p, .footer i {
+.footer h4 {
+    color: var(--secondary-color);
+}
+
+.footer-flcc {
     color: var(--text-color);
 }
 
-.footer {
+.footer-flcc a:hover {
+    color: var(--primary-color);
+}
+
+.footer-flcc a:active {
+    transform: translate(0.05em, 0.05em);
+    text-shadow: 0.05em 0.05em;
+}
+
+.footer-sosial {
     a {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background-color2);
-    margin: 0 5px 0 0;
-    padding: 10px;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background-color: var(--background-color2);
+        margin: 0 5px 0 0;
+        padding: 10px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        text-decoration: none;
+        transition: left 0.3s ease-in-out;
     }
 
-    i{
+    i {
         font-size: 24px;
         color: var(--text-color);
+        transition: left 0.3s ease-in-out;
+    }
+}
+
+.footer-sosial a:hover {
+    box-shadow: 1px 1px 5px var(--shadow-color);
+}
+
+.footer-sosial a:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}
+
+.footer-sosial i:hover {
+    color: var(--primary-color);
+}
+
+.footer-loc i {
+    color: var(--text-color);
+}
+
+.footer-serv p {
+    color: var(--text-color);
+}
+
+.cp {
+    color: var(--text-color);
+    text-align: center;
+}
+
+h1 {
+    font-family: var(--font1);
+}
+
+.footer-g {
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+@media (min-width: 375px) and (max-width: 640px) {
+    .footer-g {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 375px) {
+    .vm {
+        padding-top: 0;
+        margin-bottom: 0;
+
+        h2 {
+            font-size: 10px;
+            margin-bottom: 0;
+        }
+
+        p {
+            font-size: 14px;
+        }
+    }
+
+    .footer h4 {
+        font-size: 10px;
+        margin-bottom: 0;
+    }
+
+    .footer-g {
+        gap: 10px;
+    }
+
+    .footer-flcc {
+        a {
+            font-size: 6px;
+            padding: 0;
+        }
+    }
+
+    .footer-serv p {
+        font-size: 6px;
+    }
+
+    .footer-sosial {
+        a {
+            padding: 1px;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+        }
+
+        i {
+            font-size: 10px;
+        }
+    }
+
+    .footer-loc {
+        p {
+            font-size: 6px;
+        }
+
+        i {
+            font-size: 10px;
+        }
+    }
+
+    .cp {
+        font-size: 6px;
+    }
+
+    .footer-g {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }

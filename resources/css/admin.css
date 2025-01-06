@@ -1,0 +1,213 @@
+:root {
+    --primary-color: #ffd700;
+    --secondary-color: #ffffff5c;
+    --accent-color: #ffc107;
+    --background-color2: #272824;
+    --background-color1: black;
+    --background-color3: #191919;
+    --text-color: #fcfcfc;
+    --shadow-color: rgba(255, 255, 255, 0.3);
+    --card-background-color: #2f2f2f;
+    --font1: "Playfair Display", serif;
+    --font2: "Montserrat", sans-serif;
+    --font3: "Libre Baskerville", serif;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar:horizontal {
+    height: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--secondary-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+html {
+    background-color: var(--background-color2);
+}
+
+.header-nav {
+    background-color: var(--background-color1);
+    border-bottom: var(--border-color);
+}
+
+.header a:hover {
+    border-bottom: 2px solid white;
+}
+
+.flcc {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    background: linear-gradient(90deg, #ffd700, #ffc300, #ffa500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 150% 150%;
+    background-position: left bottom;
+    transition: all 5s ease-in-out;
+}
+
+.flcc:hover {
+    background: linear-gradient(90deg, #ffd700, #ffd700, #ffd700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-position: right top;
+    background-size: 200% 200%;
+}
+
+.nav-des {
+    font-family: var(--font2);
+}
+
+a.login,
+a.regis {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    font-size: 0.875rem;
+}
+
+.login {
+    display: inline-block;
+    padding: 8px 0;
+    width: 100px;
+    border: 1px solid var(--background-color2);
+    border-radius: 4px;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
+    font-size: 19px;
+    cursor: pointer;
+    color: var(--primary-color);
+    z-index: 1;
+    background-color: transparent;
+}
+
+.login::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-color);
+    z-index: -1;
+    transition: left 0.3s ease-in-out;
+}
+
+.login:hover {
+    color: var(--background-color1);
+}
+
+.login:hover::before {
+    left: 0;
+}
+
+.login:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}
+
+.regis {
+    color: var(--text-color);
+    padding: 8px 0;
+    width: 100px;
+    transition: all 0.3s ease-in-out;
+    font-size: 19px;
+    border: 1px solid var(--background-color2);
+    border-radius: 4px;
+}
+
+.regis:hover {
+    border-color: var(--text-color);
+}
+
+.regis:active {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em;
+}
+
+.user {
+    color: var(--text-color);
+    cursor: text;
+}
+
+.logout {
+    color: var(--primary-color);
+}
+
+.logout:hover {
+    color: var(--secondary-color);
+}
+
+.logout:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em rgba(0, 0, 0, 0);
+}
+
+#mobile-menu {
+    font-family: var(--font2);
+}
+
+#mobile-menu a {
+    color: var(--text-color);
+}
+
+#mobile-menu a:hover {
+    color: var(--primary-color);
+}
+
+#mobile-menu .login:hover {
+    color: var(--background-color1);
+}
+
+.title {
+    h1 {
+        color: var(--text-color);
+    }
+}
+
+@media (max-width: 640px) and (min-width: 474px) {
+    .title {
+        h1 {
+            font-size: 1.875rem;
+        }
+    }
+}
+
+@media (max-width: 474px) and (min-width: 400px) {
+    .title {
+        h1 {
+            font-size: 1.563rem;
+        }
+    }
+}
+
+@media (max-width: 400px) and (min-width: 326px) {
+    .title {
+        h1 {
+            font-size: 1.25rem;
+        }
+    }
+}
+
+@media (max-width: 326px) {
+    .title {
+        h1 {
+            font-size: 0.938rem;
+        }
+    }
+}

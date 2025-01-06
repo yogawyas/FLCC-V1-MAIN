@@ -1,56 +1,93 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin - @yield('title') - FLCC</title>
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />\<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&family=Libre+Baskerville&display=swap" rel="stylesheet">
+    @vite(['resources/css/app.css', 'resources/css/admin.css', 'resources/js/app.js'])
 </head>
+
 <body class="font-sans antialiased bg-gray-50 dark:bg-black">
     <!-- Admin Navigation -->
-    <nav class="bg-white dark:bg-black border-b border-gray-100 dark:border-gray-700">
+    <nav class="header-nav border-b">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo and Toggle Button -->
+                <div class="flex items-center justify-between w-full md:w-auto">
                     <!-- Logo -->
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="{{ route('welcome') }}" class="text-violet-400 font-bold text-xl">
-                            FLCC Admin
+                    <div class="flex-shrink-0">
+                        <a href="{{ route('dashboard') }}" class="flcc font-bold text-xl">
+                            FLCC
                         </a>
                     </div>
+                    <button id="menu-toggle" class="md:hidden flex items-center px-2 py-1 border rounded-md text-gray-500 hover:text-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
 
-                    <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:flex sm:ml-10">
-                        <a href="{{ route('admin.dashboard') }}" 
-                           class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('admin.dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
+                <!-- Desktop Navigation -->
+                <div class="nav-des uppercase hidden md:flex md:items-center md:ml-10">
+                    <div class="header xl:space-x-8 lg:space-x-8 md:space-x-4 me-8">
+                        <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
                         </a>
-                        <a href="{{ route('admin.events.index') }}"
-                           class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('admin.events.*') ? 'text-violet-400' : 'text-gray-500' }}">
+                        <a href="{{ route('events') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('events*') ? 'text-violet-400' : 'text-gray-500' }}">
                             Events
                         </a>
-                        <a href="{{ route('admin.ministries.index') }}"
-                           class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('admin.ministries.*') ? 'text-violet-400' : 'text-gray-500' }}">
-                            Ministries
+                        <a href="{{ route('ministry') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
+                            Ministry
                         </a>
-                        <a href="{{ route('admin.news.index') }}"
-                           class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('admin.news.*') ? 'text-violet-400' : 'text-gray-500' }}">
-                            News
+                        <a href="{{ route('about') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('about*') ? 'text-violet-400' : 'text-gray-500' }}">
+                            About Us
                         </a>
                     </div>
-                </div>
-
-                <!-- Authentication -->
-                <div class="flex items-center">
-                    <span class="text-sm text-gray-500 mr-4">{{ Auth::guard('admin')->user()->name }}</span> <!-- Menggunakan auth:admin -->
-                    <form method="POST" action="{{ route('admin.logout') }}">
-                        @csrf
-                        <button type="submit" class="text-sm text-gray-500 hover:text-gray-700">
-                            Logout
+                    @auth
+                    <div class="flex items-center space-x-4">
+                        <button class="user flex items-center text-sm font-medium focus:outline-none">
+                            {{ Auth::user()->name }}
                         </button>
-                    </form>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="logout text-sm ml-4">
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                    @else
+                    <a href="{{ route('register') }}" class="regis">Register</a>
+                    <a href="{{ route('login') }}" class="login ml-4">Login</a>
+                    @endauth
                 </div>
+            </div>
+
+            <div id="mobile-menu" class="hidden flex flex-col space-y-2 mt-4 md:hidden">
+                <a href="{{ route('dashboard') }}" class="block text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
+                    Dashboard
+                </a>
+                <a href="{{ route('events') }}" class="block text-sm font-medium {{ request()->routeIs('events*') ? 'text-violet-400' : 'text-gray-500' }}">
+                    Events
+                </a>
+                <a href="{{ route('ministry') }}" class="block text-sm font-medium {{ request()->routeIs('ministry*') ? 'text-violet-400' : 'text-gray-500' }}">
+                    Ministry
+                </a>
+                <a href="{{ route('about') }}" class="block text-sm font-medium {{ request()->routeIs('about*') ? 'text-violet-400' : 'text-gray-500' }}">
+                    About Us
+                </a>
+                @auth
+                <button class="user text-sm font-medium">{{ Auth::user()->name }}</button>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="logout text-sm">Logout</button>
+                </form>
+                @else
+                <a href="{{ route('register') }}" class="regis text-sm">Register</a>
+                <a href="{{ route('login') }}" class="login text-sm">Login</a>
+                @endauth
             </div>
         </div>
     </nav>
@@ -60,21 +97,29 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Success Message -->
             @if(session('success'))
-                <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-                    {{ session('success') }}
-                </div>
+            <div class="mb-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                {{ session('success') }}
+            </div>
             @endif
 
             <!-- Error Message -->
             @if(session('error'))
-                <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
-                    {{ session('error') }}
-                </div>
+            <div class="mb-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded">
+                {{ session('error') }}
+            </div>
             @endif
 
             <!-- Page Content -->
             @yield('content')
         </div>
     </main>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+    </script>
 </body>
+
 </html>

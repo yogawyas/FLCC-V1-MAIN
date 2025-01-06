@@ -9,7 +9,7 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&family=Libre+Baskerville&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/css/welcome.css', 'resources/js/app.js'])
 </head>
 
@@ -19,14 +19,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo and Toggle Button -->
-                <div class="flex items-center justify-between w-full sm:w-auto">
+                <div class="flex items-center justify-between w-full md:w-auto">
                     <!-- Logo -->
                     <div class="flex-shrink-0">
                         <a href="{{ route('dashboard') }}" class="flcc font-bold text-xl">
                             FLCC
                         </a>
                     </div>
-                    <button id="menu-toggle" class="sm:hidden flex items-center px-2 py-1 border rounded-md text-gray-500 hover:text-gray-700 focus:outline-none">
+                    <button id="menu-toggle" class="md:hidden flex items-center px-2 py-1 border rounded-md text-gray-500 hover:text-gray-700 focus:outline-none">
                         <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
@@ -34,8 +34,8 @@
                 </div>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden sm:flex sm:items-center sm:ml-10">
-                    <div class="header space-x-8 me-8">
+                <div class="nav-des uppercase hidden md:flex md:items-center md:ml-10">
+                    <div class="header xl:space-x-8 lg:space-x-8 md:space-x-4 me-8">
                         <a href="{{ route('dashboard') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
                             Dashboard
                         </a>
@@ -68,7 +68,7 @@
                 </div>
             </div>
 
-            <div id="mobile-menu" class="hidden flex flex-col space-y-2 mt-4 sm:hidden">
+            <div id="mobile-menu" class="hidden flex flex-col space-y-2 mt-4 md:hidden">
                 <a href="{{ route('dashboard') }}" class="block text-sm font-medium {{ request()->routeIs('dashboard') ? 'text-violet-400' : 'text-gray-500' }}">
                     Dashboard
                 </a>
@@ -95,20 +95,13 @@
         </div>
     </nav>
 
-    <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
-    </script>
-
     <!-- Main Content -->
     <div id="welcome">
         <!-- Video Section -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="mb-12 rounded-lg overflow-hidden aspect-video">
-                <h1 class="title text-7xl text-center mb-1" data-aos="fade-down" data-aos-duration="1000">Front Liner Campus Community</h1>
-                <iframe class="w-full h-full"
+            <div class="title mb-12 rounded-lg overflow-hidden aspect-video">
+                <h1 class="xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-center mb-2" data-aos="fade-down" data-aos-duration="1000">Front Liner Campus Community</h1>
+                <iframe class="w-full h-screen xl:w-full xl:h-full"
                     src="https://www.youtube.com/embed/Fg0Tn_v8gJ0?autoplay=1"
                     frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -116,35 +109,19 @@
                 </iframe>
             </div>
 
-            <!-- Vision & Mission -->
-            <div class="vm grid gap-5 mb-12 max-w-7xl mx-auto md:grid-cols-2" data-aos="fade-up" data-aos-duration="1000">
-                <div class="mb-5">
-                    <h2 class="text-gray-400 text-base md:text-lg lg:text-xl font-semibold mb-4">Our Vision</h2>
-                    <p class="v text-lg md:text-xl lg:text-2xl">
-                        Transforming communities, raising next generation of leaders.
-                    </p>
-                </div>
-                <div>
-                    <h2 class="text-gray-400 text-base md:text-lg lg:text-xl font-semibold mb-4">Our Mission</h2>
-                    <p class="v text-lg md:text-xl lg:text-2xl">
-                        An assembly of next generation and discipling next generation to experience God and find their calling so they can transform and influence their communities through kingdom values.
-                    </p>
-                </div>
-            </div>
-
             <!-- News Section -->
             <div class="mb-12">
-                <div class="flex justify-between items-center mb-8" data-aos="fade-up-right" data-aos-duration="1500">
-                    <h2 class="text-3xl font-bold text-white">FLCC's NEWS</h2>
-                    <a href="{{ route('news') }}" class="news">View All News <i class="fa-solid fa-arrow-right"></i></a>
+                <div class="news flex justify-between items-center mb-8" data-aos="fade-up-right" data-aos-duration="1500">
+                    <h2 class="text-5xl font-bold text-white">FLCC's News</h2>
+                    <a href="{{ route('news') }}" class="news-v">View All News <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <div class="relative" data-aos="fade-up" data-aos-duration="1500">
-                    <div class="flex overflow-x-auto space-x-6 pb-4 scrollbar-hide">
+                    <div class="flex overflow-x-auto space-x-6 pb-4">
                         @forelse($news ?? [] as $newsItem)
                         <div class="new rounded-lg p-8 flex-shrink-0">
-                            <h3 class="text-white font-bold mb-2">{{ $newsItem->title }}</h3>
-                            <p class="text-white/90">{{ Str::limit($newsItem->content, 100) }}</p>
+                            <h3 class="text-3xl font-bold mb-2">{{ $newsItem->title }}</h3>
+                            <p class="text-lg">{{ Str::limit($newsItem->content, 100) }}</p>
                         </div>
                         @empty
                         <div class="overflow-hidden">
@@ -164,9 +141,8 @@
 
             <!-- Pastors Section -->
             <div class="mb-12">
-                <div class="text-gray-400 grid gap-8">
-                    <!-- Our Associate Youth Pastor -->
-                    <!-- <div>
+                <!-- Our Associate Youth Pastor -->
+                <!-- <div>
                         <div class="text-center mb-8" data-aos="fade-right" data-aos-duration="1500">
                             <h2 class="text-2xl font-bold mb-2">Our Associate Youth Pastor</h2>
                             <h3 class="text-xl">Stephanie Fenuela</h3>
@@ -178,23 +154,38 @@
                         </div>
                     </div> -->
 
-                    <!-- Our Youth Pastor -->
-                    <div class="flex relative max-w-3xl w-lg">
-                        <div data-aos="fade-up-right" data-aos-duration="1500">
-                            <img src="{{ asset('images/pastor/p-joshuahezer.png') }}" alt="Joshua Hezer" class="w-full h-full object-cover">
-                        </div>
-                        <div class="nama absolute mb-8" data-aos="fade-right" data-aos-duration="1500">
-                            <h2 class="text-5xl">Joshua Hezer</h2>
-                            <h3 class="text-2xl font-bold mb-2">Our Youth Pastor</h3>
-                        </div>
+                <!-- Our Youth Pastor -->
+                <div class="pastor flex relative sm:max-w-2xl md:max-w-3xl lg:max-w-4xl max-w-4xl w-lg">
+                    <div data-aos="fade-up-right" data-aos-duration="1500">
+                        <img src="{{ asset('images/pastor/p-joshuahezer.png') }}" alt="Joshua Hezer" class="foto sm:max-w-md md:max-w-xl h-full object-cover">
                     </div>
+                    <div class="nama absolute" data-aos="fade-right" data-aos-duration="1500">
+                        <h2 class="sm:text-5xl md:text-6xl lg:text-7xl text-7xl mb-2">Joshua Hezer</h2>
+                        <h3 class="sm:text-lg md:text-xl text-2xl font-bold mb-2">Our Youth Pastor</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision & Mission -->
+            <div class="vm grid gap-5 mb-12 max-w-7xl mx-auto md:grid-cols-2" data-aos="fade-up" data-aos-duration="1000">
+                <div class="my-5">
+                    <h2 class="text-base md:text-lg lg:text-xl font-semibold mb-4">Our Vision</h2>
+                    <p class="v text-lg md:text-xl lg:text-2xl">
+                        Transforming communities, raising next generation of leaders.
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-base md:text-lg lg:text-xl font-semibold mb-4">Our Mission</h2>
+                    <p class="v text-lg md:text-xl lg:text-2xl">
+                        An assembly of next generation and discipling next generation to experience God and find their calling so they can transform and influence their communities through kingdom values.
+                    </p>
                 </div>
             </div>
 
             <!-- More About Us Button -->
 
-            <div class="text-center" data-aos="fade-up" data-aos-duration="1000">
-                <a href="{{ route('about') }}" class="us text-2xl font-bold">
+            <div class="text-center mt-4" data-aos="fade-up" data-aos-duration="1000">
+                <a href="{{ route('about') }}" class="us text-md sm:text-xl lg:text-2xl font-bold">
                     Discover More About Us
                 </a>
 
@@ -207,30 +198,26 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-8 pb-3">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-3">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 lg:pt-8 pb-3 text-sm lg:text-base xl:text-base">
+            <div class="footer-g grid grid-cols-1 md:grid-cols-4 sm:grid-cols-3 gap-8 pb-3">
                 <!-- <div>
                     <h4 class="font-semibold mb-4">Contact Us</h4>
 
                 </div> -->
                 <div class="footer-flcc">
                     <h4 class="font-semibold mb-4">FLCC</h4>
-                    <a href="{{ route('dashboard') }}" class="text-base px-1 pt-1 font-medium {{ request()->routeIs('dashboard')}}">
+                    <a href="{{ route('dashboard') }}" class=" px-1 pt-1 font-medium {{ request()->routeIs('dashboard')}}">
                         Dashboard
                     </a><br>
-                    <a href="{{ route('events') }}" class="text-base px-1 pt-1 font-medium {{ request()->routeIs('events*')}}">
+                    <a href="{{ route('events') }}" class=" px-1 pt-1 font-medium {{ request()->routeIs('events*')}}">
                         Events
                     </a><br>
-                    <a href="{{ route('ministry') }}" class="text-base px-1 pt-1 font-medium {{ request()->routeIs('ministry*')}}">
+                    <a href="{{ route('ministry') }}" class=" px-1 pt-1 font-medium {{ request()->routeIs('ministry*')}}">
                         Ministry
                     </a><br>
-                    <a href="{{ route('about') }}" class="text-base px-1 pt-1 font-medium {{ request()->routeIs('about*')}}">
+                    <a href="{{ route('about') }}" class=" px-1 pt-1 font-medium {{ request()->routeIs('about*')}}">
                         About Us
                     </a><br>
-                </div>
-                <div class="footer-loc flex">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p class="text-white">Ruko Golden Boulevard, Blok U No.6, Lt.3, Tangerang 15310</p>
                 </div>
                 <div class="footer-serv">
                     <h4 class="font-semibold mb-4">Service Times</h4>
@@ -246,15 +233,23 @@
                         <i class="fa-brands fa-youtube"></i>
                     </a>
                 </div>
+                <div class="footer-loc flex items-center space-x-4">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="text-white">Ruko Golden Boulevard, Blok U No.6, Lt.3, Tangerang 15310</p>
+                </div>
             </div>
-            <hr>
-            <p class="cp mt-3">&copy;2025 Front Liner Campus Community. All rights reserved.</p>
+            <p class="cp mt-3">&copy; 2025 Front Liner Campus Community. All rights reserved.</p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();
+
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
     </script>
 </body>
 
