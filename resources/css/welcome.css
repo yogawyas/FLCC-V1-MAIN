@@ -41,22 +41,68 @@ html {
 .header-nav {
     background-color: var(--background-color1);
     border-bottom: var(--border-color);
+
+    a {
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+}
+
+.header-nav a:hover {
+    transform: translateX(5px);
+}
+
+.header-nav a:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.header-nav a:hover:after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .header a:nth-child(1) {
     color: var(--primary-color);
-    transition: all 0.2s ease-in-out;
 }
 
 .header a:nth-child(2),
 .header a:nth-child(3),
 .header a:nth-child(4) {
     color: var(--text-color);
-    transition: all 0.2s ease-in-out;
 }
 
-.header a:hover {
-    border-bottom: 2px solid white;
+.header-nav a:nth-child(5) {
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.header-nav a:nth-child(5):hover {
+    transform: translateX(5px);
+}
+
+.header-nav a:nth-child(5):after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--background-color1);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.header-nav a:nth-child(5):hover:after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .flcc {
@@ -287,6 +333,24 @@ a.regis {
             font-size: 0.938rem;
         }
     }
+}
+
+.ti {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-top: 56.25%;
+}
+
+.youtube {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .vm {
@@ -688,16 +752,16 @@ h1 {
 }
 
 @media (max-width: 375px) {
-    .vm{
+    .vm {
         padding-top: 0;
         margin-bottom: 0;
 
-        h2{
+        h2 {
             font-size: 10px;
             margin-bottom: 0;
         }
 
-        p{
+        p {
             font-size: 14px;
         }
     }
@@ -707,12 +771,12 @@ h1 {
         margin-bottom: 0;
     }
 
-    .footer-g{
+    .footer-g {
         gap: 10px;
     }
 
     .footer-flcc {
-        a{
+        a {
             font-size: 6px;
             padding: 0;
         }
@@ -729,24 +793,23 @@ h1 {
             width: 20px;
             height: 20px;
         }
-    
+
         i {
             font-size: 10px;
         }
     }
 
     .footer-loc {
-
-        p{
+        p {
             font-size: 6px;
         }
 
-        i{
+        i {
             font-size: 10px;
         }
     }
 
-    .cp{
+    .cp {
         font-size: 6px;
     }
 

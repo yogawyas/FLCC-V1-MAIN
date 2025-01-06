@@ -101,27 +101,14 @@
             <div class="us flex flex-col md:flex-row mb-12 space-y-6 md:space-y-0">
                 <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-0 flex-auto" data-aos="fade-right" data-aos-duration="1500"> Our Story</h1>
                 <div class="text-base lg:text-md leading-relaxed md:w-2/3" data-aos="fade-up" data-aos-duration="1500">
-                    <p class="mb-3">
-                        Atas kasih karunia Tuhan Yesus, Gereja Bethel Indonesia (GBI) WTC berdiri pada tahun
-                        1999. GBI WTC berjalan di bawah kepemimpinan pendiri kami terkasih, Ps. Jeffrey dan
-                        Angela Rachmat selama 25 tahun. Sejak Minggu, 20 Oktober 2024, kepemimpinan GBI
-                        WTC diteruskan oleh Ps. Jose dan Hanna Carol sebagai Senior Pastor GBI WTC.
+                    <p class="mb-8">
+                        By the grace of Lord Jesus, Gereja Bethel Indonesia (GBI) WTC was established in 1999. GBI WTC operated under the leadership of our beloved founders, Ps. Jeffrey and Angela Rachmat, for 25 years. Since Sunday, October 20, 2024, the leadership of GBI WTC has been entrusted to Ps. Jose and Hanna Carol as the Senior Pastors of GBI WTC.
                     </p>
-                    <p class="mb-3">
-                        Bersama seluruh tim pastoral, GBI WTC adalah sebuah gereja Kristen di bawah sinode
-                        Gereja Bethel Indonesia (GBI). Kami berkumpul sebagai gereja untuk pertama kalinya
-                        dalam ibadah Minggu yang bertempat di Menara Gracia, kota Jakarta, Indonesia. Sejak
-                        itu, kami terus bertumbuh dan kini berkumpul secara fisik di tiga lokasi gereja kami di
-                        UpperRoom, The Kasablanka, dan Sutera Hall. GBI WTC juga memiliki ibadah online
-                        untuk menjangkau orang melampaui batasan geografis.
+                    <p class="mb-8">
+                    Together with the entire pastoral team, GBI WTC is a Christian church under the synod of Gereja Bethel Indonesia (GBI). We first gathered as a church for Sunday service at Menara Gracia, Jakarta, Indonesia. Since then, we have continued to grow and now meet physically at three church locations: UpperRoom, The Kasablanka, and Sutera Hall. GBI WTC also offers online services to reach people beyond geographical boundaries.
                     </p>
                     <p>
-                        Mulai dari memperkenalkan orang kepada Yesus Kristus dan kasih-Nya yang luar biasa,
-                        membaptis mereka yang memutuskan untuk percaya dan menjadikan Yesus Juru
-                        Selamat di hidupnya, memperlengkapi orang percaya melalui kelas-kelas dan
-                        komunitas, serta membangun generasi penerus; baik anak-anak maupun remaja—kami
-                        bersyukur atas tuntunan dan penyediaan Tuhan selama ini, dan kami percayakan
-                        tahun-tahun yang akan datang di tangan-Nya sambil terus melayani Dia dan gereja-Nya.
+                    From introducing people to Jesus Christ and His extraordinary love, baptizing those who decide to believe and make Jesus their Savior, equipping believers through classes and communities, to building the next generation—both children and youth—we are grateful for God's guidance and provision throughout the years. We entrust the years to come into His hands as we continue to serve Him and His church.
                     </p>
                 </div>
             </div>

@@ -101,12 +101,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             <div class="title mb-12 rounded-lg overflow-hidden aspect-video">
                 <h1 class="xl:text-7xl lg:text-6xl md:text-5xl sm:text-4xl text-center mb-2" data-aos="fade-down" data-aos-duration="1000">Front Liner Campus Community</h1>
-                <iframe class="w-full h-screen xl:w-full xl:h-full"
-                    src="https://www.youtube.com/embed/Fg0Tn_v8gJ0?autoplay=1"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen data-aos="fade-up" data-aos-duration="1000">
-                </iframe>
+                <div class="ti">
+                    <iframe class="youtube w-full h-screen xl:w-full xl:h-full"
+                        src="https://www.youtube.com/embed/Fg0Tn_v8gJ0?autoplay=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen data-aos="fade-up" data-aos-duration="1000">
+                    </iframe>
+                </div>
             </div>
 
             <!-- News Section -->

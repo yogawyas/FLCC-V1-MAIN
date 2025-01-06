@@ -206,6 +206,32 @@ span {
 .header-nav {
     background-color: var(--background-color1);
     border-bottom: var(--border-color);
+
+    a {
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+}
+
+.header-nav a:hover {
+    transform: translateX(5px);
+}
+
+.header-nav a:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.header-nav a:hover:after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .header a:nth-child(2) {
@@ -218,10 +244,6 @@ span {
 .header a:nth-child(4) {
     color: var(--text-color);
     transition: all 0.2s ease-in-out;
-}
-
-.header a:hover {
-    border-bottom: 2px solid white;
 }
 
 .flcc {
@@ -579,7 +601,7 @@ a.regis {
     transition-duration: 0.3s;
 }
 
-.no{
+.no {
     color: var(--accent-color);
 }
 
@@ -609,29 +631,29 @@ section h2 {
     color: var(--text-color);
 }
 
-.create{
+.create {
     width: 70%;
     margin: 0 auto;
 
-    h1{
+    h1 {
         color: var(--text-color);
         text-align: center;
     }
 
-    label{
+    label {
         color: var(--text-color);
     }
 
-    #image{
+    #image {
         color: var(--accent-color);
     }
 
-    button{
+    button {
         background-color: var(--primary-color);
         color: var(--background-color2);
     }
 
-    button:hover{
+    button:hover {
         background-color: var(--accent-color);
         border-radius: 0.25rem;
         padding: 0.5em 1em;
@@ -689,7 +711,7 @@ section h2 {
 .footer-flcc {
     color: var(--text-color);
 
-    a{
+    a {
         font-family: var(--font3);
     }
 }
